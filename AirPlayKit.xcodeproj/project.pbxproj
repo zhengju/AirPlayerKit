@@ -1,0 +1,414 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7AA4BA9C22C5FDE50042477D /* libLEDLNASDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA4BA9822C5FDB40042477D /* libLEDLNASDK.a */; };
+		7AA4BADA22C602FF0042477D /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA4BACA22C5FF170042477D /* libxml2.tbd */; };
+		7AE0AE1522C49B3B00A7A0C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE0AE1422C49B3B00A7A0C2 /* AppDelegate.m */; };
+		7AE0AE1822C49B3B00A7A0C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE0AE1722C49B3B00A7A0C2 /* ViewController.m */; };
+		7AE0AE1B22C49B3B00A7A0C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AE0AE1922C49B3B00A7A0C2 /* Main.storyboard */; };
+		7AE0AE1D22C49B3C00A7A0C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AE0AE1C22C49B3C00A7A0C2 /* Assets.xcassets */; };
+		7AE0AE2022C49B3C00A7A0C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AE0AE1E22C49B3C00A7A0C2 /* LaunchScreen.storyboard */; };
+		7AE0AE2322C49B3C00A7A0C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE0AE2222C49B3C00A7A0C2 /* main.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7AA4BA9722C5FDB40042477D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7AA4BA9322C5FDB40042477D /* LEDLNASDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7AA4BA8722C5FD800042477D;
+			remoteInfo = LEDLNASDK;
+		};
+		7AA4BA9922C5FDE10042477D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7AA4BA9322C5FDB40042477D /* LEDLNASDK.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7AA4BA8622C5FD800042477D;
+			remoteInfo = LEDLNASDK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7AA4BA9322C5FDB40042477D /* LEDLNASDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LEDLNASDK.xcodeproj; path = libs/LEDLNASDK/LEDLNASDK.xcodeproj; sourceTree = SOURCE_ROOT; };
+		7AA4BACA22C5FF170042477D /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		7AA4BACC22C5FF500042477D /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+		7AE0AE1022C49B3B00A7A0C2 /* AirPlayKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirPlayKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AE0AE1322C49B3B00A7A0C2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7AE0AE1422C49B3B00A7A0C2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7AE0AE1622C49B3B00A7A0C2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		7AE0AE1722C49B3B00A7A0C2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		7AE0AE1A22C49B3B00A7A0C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7AE0AE1C22C49B3C00A7A0C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7AE0AE1F22C49B3C00A7A0C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7AE0AE2122C49B3C00A7A0C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7AE0AE2222C49B3C00A7A0C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7AE0AE0D22C49B3B00A7A0C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7AA4BADA22C602FF0042477D /* libxml2.tbd in Frameworks */,
+				7AA4BA9C22C5FDE50042477D /* libLEDLNASDK.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7AA4BA9422C5FDB40042477D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7AA4BA9822C5FDB40042477D /* libLEDLNASDK.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7AA4BA9B22C5FDE50042477D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7AA4BACC22C5FF500042477D /* libxml2.2.tbd */,
+				7AA4BACA22C5FF170042477D /* libxml2.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7AE0AE0722C49B3B00A7A0C2 = {
+			isa = PBXGroup;
+			children = (
+				7AE0AE1222C49B3B00A7A0C2 /* AirPlayKit */,
+				7AE0AE1122C49B3B00A7A0C2 /* Products */,
+				7AA4BA9B22C5FDE50042477D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7AE0AE1122C49B3B00A7A0C2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7AE0AE1022C49B3B00A7A0C2 /* AirPlayKit.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7AE0AE1222C49B3B00A7A0C2 /* AirPlayKit */ = {
+			isa = PBXGroup;
+			children = (
+				7AA4BA9322C5FDB40042477D /* LEDLNASDK.xcodeproj */,
+				7AE0AE1322C49B3B00A7A0C2 /* AppDelegate.h */,
+				7AE0AE1422C49B3B00A7A0C2 /* AppDelegate.m */,
+				7AE0AE1622C49B3B00A7A0C2 /* ViewController.h */,
+				7AE0AE1722C49B3B00A7A0C2 /* ViewController.m */,
+				7AE0AE1922C49B3B00A7A0C2 /* Main.storyboard */,
+				7AE0AE1C22C49B3C00A7A0C2 /* Assets.xcassets */,
+				7AE0AE1E22C49B3C00A7A0C2 /* LaunchScreen.storyboard */,
+				7AE0AE2122C49B3C00A7A0C2 /* Info.plist */,
+				7AE0AE2222C49B3C00A7A0C2 /* main.m */,
+			);
+			path = AirPlayKit;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7AE0AE0F22C49B3B00A7A0C2 /* AirPlayKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7AE0AE2622C49B3C00A7A0C2 /* Build configuration list for PBXNativeTarget "AirPlayKit" */;
+			buildPhases = (
+				7AE0AE0C22C49B3B00A7A0C2 /* Sources */,
+				7AE0AE0D22C49B3B00A7A0C2 /* Frameworks */,
+				7AE0AE0E22C49B3B00A7A0C2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7AA4BA9A22C5FDE10042477D /* PBXTargetDependency */,
+			);
+			name = AirPlayKit;
+			productName = AirPlayKit;
+			productReference = 7AE0AE1022C49B3B00A7A0C2 /* AirPlayKit.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7AE0AE0822C49B3B00A7A0C2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = zsw;
+				TargetAttributes = {
+					7AE0AE0F22C49B3B00A7A0C2 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 7AE0AE0B22C49B3B00A7A0C2 /* Build configuration list for PBXProject "AirPlayKit" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7AE0AE0722C49B3B00A7A0C2;
+			productRefGroup = 7AE0AE1122C49B3B00A7A0C2 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7AA4BA9422C5FDB40042477D /* Products */;
+					ProjectRef = 7AA4BA9322C5FDB40042477D /* LEDLNASDK.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				7AE0AE0F22C49B3B00A7A0C2 /* AirPlayKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		7AA4BA9822C5FDB40042477D /* libLEDLNASDK.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libLEDLNASDK.a;
+			remoteRef = 7AA4BA9722C5FDB40042477D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7AE0AE0E22C49B3B00A7A0C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7AE0AE2022C49B3C00A7A0C2 /* LaunchScreen.storyboard in Resources */,
+				7AE0AE1D22C49B3C00A7A0C2 /* Assets.xcassets in Resources */,
+				7AE0AE1B22C49B3B00A7A0C2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7AE0AE0C22C49B3B00A7A0C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7AE0AE1822C49B3B00A7A0C2 /* ViewController.m in Sources */,
+				7AE0AE2322C49B3C00A7A0C2 /* main.m in Sources */,
+				7AE0AE1522C49B3B00A7A0C2 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7AA4BA9A22C5FDE10042477D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LEDLNASDK;
+			targetProxy = 7AA4BA9922C5FDE10042477D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7AE0AE1922C49B3B00A7A0C2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7AE0AE1A22C49B3B00A7A0C2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7AE0AE1E22C49B3C00A7A0C2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7AE0AE1F22C49B3C00A7A0C2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7AE0AE2422C49B3C00A7A0C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7AE0AE2522C49B3C00A7A0C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7AE0AE2722C49B3C00A7A0C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2FFNFZE3QD;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libs/LEDLNASDK/LEDLNASDK\"/**";
+				INFOPLIST_FILE = AirPlayKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "---.AirPlayKit";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7AE0AE2822C49B3C00A7A0C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2FFNFZE3QD;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libs/LEDLNASDK/LEDLNASDK\"/**";
+				INFOPLIST_FILE = AirPlayKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "---.AirPlayKit";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7AE0AE0B22C49B3B00A7A0C2 /* Build configuration list for PBXProject "AirPlayKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7AE0AE2422C49B3C00A7A0C2 /* Debug */,
+				7AE0AE2522C49B3C00A7A0C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7AE0AE2622C49B3C00A7A0C2 /* Build configuration list for PBXNativeTarget "AirPlayKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7AE0AE2722C49B3C00A7A0C2 /* Debug */,
+				7AE0AE2822C49B3C00A7A0C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7AE0AE0822C49B3B00A7A0C2 /* Project object */;
+}

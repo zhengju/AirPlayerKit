@@ -1,0 +1,442 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7AA4BAA222C5FE7D0042477D /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4BA9E22C5FE7D0042477D /* GCDAsyncSocket.m */; };
+		7AA4BAA322C5FE7D0042477D /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4BAA122C5FE7D0042477D /* GCDAsyncUdpSocket.m */; };
+		7AA4BABD22C5FECD0042477D /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4BAA822C5FECD0042477D /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7AA4BABE22C5FECD0042477D /* MRDLNA.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4BAAA22C5FECD0042477D /* MRDLNA.m */; };
+		7AA4BABF22C5FECD0042477D /* CLUPnPAVPositionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4BAAC22C5FECD0042477D /* CLUPnPAVPositionInfo.m */; };
+		7AA4BAC022C5FECD0042477D /* CLUPnPAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4BAAE22C5FECD0042477D /* CLUPnPAction.m */; };
+		7AA4BAC122C5FECD0042477D /* CLUPnPDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4BAB222C5FECD0042477D /* CLUPnPDevice.m */; };
+		7AA4BAC222C5FECD0042477D /* CLUPnPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4BAB422C5FECD0042477D /* CLUPnPServer.m */; };
+		7AA4BAC322C5FECD0042477D /* CLUPnPRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4BAB622C5FECD0042477D /* CLUPnPRenderer.m */; };
+		7AA4BAC422C5FECD0042477D /* StopAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4BAB922C5FECD0042477D /* StopAction.m */; };
+		7AA4BACE22C600AB0042477D /* MRDLNA.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7AA4BABC22C5FECD0042477D /* MRDLNA.h */; };
+		7AA4BACF22C602500042477D /* CLUPnPRenderer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7AA4BAAD22C5FECD0042477D /* CLUPnPRenderer.h */; };
+		7AA4BAD022C602500042477D /* CLUPnPServer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7AA4BAAF22C5FECD0042477D /* CLUPnPServer.h */; };
+		7AA4BAD122C602500042477D /* StopAction.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7AA4BAB122C5FECD0042477D /* StopAction.h */; };
+		7AA4BAD222C602500042477D /* CLUPnPAction.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7AA4BAB522C5FECD0042477D /* CLUPnPAction.h */; };
+		7AA4BAD322C602500042477D /* CLUPnPAVPositionInfo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7AA4BAB722C5FECD0042477D /* CLUPnPAVPositionInfo.h */; };
+		7AA4BAD422C602510042477D /* CLUPnP.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7AA4BAB822C5FECD0042477D /* CLUPnP.h */; };
+		7AA4BAD522C602510042477D /* CLUPnPDevice.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7AA4BABB22C5FECD0042477D /* CLUPnPDevice.h */; };
+		7AA4BAD622C602510042477D /* GDataXMLNode.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7AA4BAA722C5FECD0042477D /* GDataXMLNode.h */; };
+		7AA4BAD722C602830042477D /* CLUPnPResponseDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7AA4BAB322C5FECD0042477D /* CLUPnPResponseDelegate.h */; };
+		7AA4BAD822C602830042477D /* GCDAsyncSocket.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7AA4BAA022C5FE7D0042477D /* GCDAsyncSocket.h */; };
+		7AA4BAD922C602830042477D /* GCDAsyncUdpSocket.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7AA4BA9F22C5FE7D0042477D /* GCDAsyncUdpSocket.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7AA4BA8522C5FD800042477D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				7AA4BAD722C602830042477D /* CLUPnPResponseDelegate.h in CopyFiles */,
+				7AA4BAD822C602830042477D /* GCDAsyncSocket.h in CopyFiles */,
+				7AA4BAD922C602830042477D /* GCDAsyncUdpSocket.h in CopyFiles */,
+				7AA4BACF22C602500042477D /* CLUPnPRenderer.h in CopyFiles */,
+				7AA4BAD022C602500042477D /* CLUPnPServer.h in CopyFiles */,
+				7AA4BAD122C602500042477D /* StopAction.h in CopyFiles */,
+				7AA4BAD222C602500042477D /* CLUPnPAction.h in CopyFiles */,
+				7AA4BAD322C602500042477D /* CLUPnPAVPositionInfo.h in CopyFiles */,
+				7AA4BAD422C602510042477D /* CLUPnP.h in CopyFiles */,
+				7AA4BAD522C602510042477D /* CLUPnPDevice.h in CopyFiles */,
+				7AA4BAD622C602510042477D /* GDataXMLNode.h in CopyFiles */,
+				7AA4BACE22C600AB0042477D /* MRDLNA.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		7AA4BA8722C5FD800042477D /* libLEDLNASDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLEDLNASDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AA4BA9E22C5FE7D0042477D /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		7AA4BA9F22C5FE7D0042477D /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		7AA4BAA022C5FE7D0042477D /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		7AA4BAA122C5FE7D0042477D /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+		7AA4BAA722C5FECD0042477D /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		7AA4BAA822C5FECD0042477D /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		7AA4BAAA22C5FECD0042477D /* MRDLNA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRDLNA.m; sourceTree = "<group>"; };
+		7AA4BAAC22C5FECD0042477D /* CLUPnPAVPositionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLUPnPAVPositionInfo.m; sourceTree = "<group>"; };
+		7AA4BAAD22C5FECD0042477D /* CLUPnPRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUPnPRenderer.h; sourceTree = "<group>"; };
+		7AA4BAAE22C5FECD0042477D /* CLUPnPAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLUPnPAction.m; sourceTree = "<group>"; };
+		7AA4BAAF22C5FECD0042477D /* CLUPnPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUPnPServer.h; sourceTree = "<group>"; };
+		7AA4BAB022C5FECD0042477D /* SetUrl.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SetUrl.xml; sourceTree = "<group>"; };
+		7AA4BAB122C5FECD0042477D /* StopAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAction.h; sourceTree = "<group>"; };
+		7AA4BAB222C5FECD0042477D /* CLUPnPDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLUPnPDevice.m; sourceTree = "<group>"; };
+		7AA4BAB322C5FECD0042477D /* CLUPnPResponseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUPnPResponseDelegate.h; sourceTree = "<group>"; };
+		7AA4BAB422C5FECD0042477D /* CLUPnPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLUPnPServer.m; sourceTree = "<group>"; };
+		7AA4BAB522C5FECD0042477D /* CLUPnPAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUPnPAction.h; sourceTree = "<group>"; };
+		7AA4BAB622C5FECD0042477D /* CLUPnPRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLUPnPRenderer.m; sourceTree = "<group>"; };
+		7AA4BAB722C5FECD0042477D /* CLUPnPAVPositionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUPnPAVPositionInfo.h; sourceTree = "<group>"; };
+		7AA4BAB822C5FECD0042477D /* CLUPnP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUPnP.h; sourceTree = "<group>"; };
+		7AA4BAB922C5FECD0042477D /* StopAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAction.m; sourceTree = "<group>"; };
+		7AA4BABA22C5FECD0042477D /* Device.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Device.xml; sourceTree = "<group>"; };
+		7AA4BABB22C5FECD0042477D /* CLUPnPDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUPnPDevice.h; sourceTree = "<group>"; };
+		7AA4BABC22C5FECD0042477D /* MRDLNA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRDLNA.h; sourceTree = "<group>"; };
+		7AA4BAC622C5FF010042477D /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		7AA4BAC822C5FF0C0042477D /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7AA4BA8422C5FD800042477D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7AA4BA7E22C5FD800042477D = {
+			isa = PBXGroup;
+			children = (
+				7AA4BA8922C5FD800042477D /* LEDLNASDK */,
+				7AA4BA8822C5FD800042477D /* Products */,
+				7AA4BAC522C5FF010042477D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7AA4BA8822C5FD800042477D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7AA4BA8722C5FD800042477D /* libLEDLNASDK.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7AA4BA8922C5FD800042477D /* LEDLNASDK */ = {
+			isa = PBXGroup;
+			children = (
+				7AA4BAA422C5FEB20042477D /* DLNA */,
+				7AA4BA9D22C5FE6C0042477D /* CocoaAsyncSocket */,
+			);
+			path = LEDLNASDK;
+			sourceTree = "<group>";
+		};
+		7AA4BA9D22C5FE6C0042477D /* CocoaAsyncSocket */ = {
+			isa = PBXGroup;
+			children = (
+				7AA4BAA022C5FE7D0042477D /* GCDAsyncSocket.h */,
+				7AA4BA9E22C5FE7D0042477D /* GCDAsyncSocket.m */,
+				7AA4BA9F22C5FE7D0042477D /* GCDAsyncUdpSocket.h */,
+				7AA4BAA122C5FE7D0042477D /* GCDAsyncUdpSocket.m */,
+			);
+			path = CocoaAsyncSocket;
+			sourceTree = "<group>";
+		};
+		7AA4BAA422C5FEB20042477D /* DLNA */ = {
+			isa = PBXGroup;
+			children = (
+				7AA4BAA922C5FECD0042477D /* ARC */,
+				7AA4BAA522C5FECD0042477D /* MRC */,
+			);
+			path = DLNA;
+			sourceTree = "<group>";
+		};
+		7AA4BAA522C5FECD0042477D /* MRC */ = {
+			isa = PBXGroup;
+			children = (
+				7AA4BAA622C5FECD0042477D /* GData */,
+			);
+			path = MRC;
+			sourceTree = "<group>";
+		};
+		7AA4BAA622C5FECD0042477D /* GData */ = {
+			isa = PBXGroup;
+			children = (
+				7AA4BAA722C5FECD0042477D /* GDataXMLNode.h */,
+				7AA4BAA822C5FECD0042477D /* GDataXMLNode.m */,
+			);
+			path = GData;
+			sourceTree = "<group>";
+		};
+		7AA4BAA922C5FECD0042477D /* ARC */ = {
+			isa = PBXGroup;
+			children = (
+				7AA4BABC22C5FECD0042477D /* MRDLNA.h */,
+				7AA4BAAA22C5FECD0042477D /* MRDLNA.m */,
+				7AA4BAAB22C5FECD0042477D /* DLNA */,
+			);
+			path = ARC;
+			sourceTree = "<group>";
+		};
+		7AA4BAAB22C5FECD0042477D /* DLNA */ = {
+			isa = PBXGroup;
+			children = (
+				7AA4BAAC22C5FECD0042477D /* CLUPnPAVPositionInfo.m */,
+				7AA4BAAD22C5FECD0042477D /* CLUPnPRenderer.h */,
+				7AA4BAAE22C5FECD0042477D /* CLUPnPAction.m */,
+				7AA4BAAF22C5FECD0042477D /* CLUPnPServer.h */,
+				7AA4BAB022C5FECD0042477D /* SetUrl.xml */,
+				7AA4BAB122C5FECD0042477D /* StopAction.h */,
+				7AA4BAB222C5FECD0042477D /* CLUPnPDevice.m */,
+				7AA4BAB322C5FECD0042477D /* CLUPnPResponseDelegate.h */,
+				7AA4BAB422C5FECD0042477D /* CLUPnPServer.m */,
+				7AA4BAB522C5FECD0042477D /* CLUPnPAction.h */,
+				7AA4BAB622C5FECD0042477D /* CLUPnPRenderer.m */,
+				7AA4BAB722C5FECD0042477D /* CLUPnPAVPositionInfo.h */,
+				7AA4BAB822C5FECD0042477D /* CLUPnP.h */,
+				7AA4BAB922C5FECD0042477D /* StopAction.m */,
+				7AA4BABA22C5FECD0042477D /* Device.xml */,
+				7AA4BABB22C5FECD0042477D /* CLUPnPDevice.h */,
+			);
+			path = DLNA;
+			sourceTree = "<group>";
+		};
+		7AA4BAC522C5FF010042477D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7AA4BAC822C5FF0C0042477D /* libxml2.2.tbd */,
+				7AA4BAC622C5FF010042477D /* libxml2.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7AA4BA8622C5FD800042477D /* LEDLNASDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7AA4BA9022C5FD800042477D /* Build configuration list for PBXNativeTarget "LEDLNASDK" */;
+			buildPhases = (
+				7AA4BA8322C5FD800042477D /* Sources */,
+				7AA4BA8422C5FD800042477D /* Frameworks */,
+				7AA4BA8522C5FD800042477D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LEDLNASDK;
+			productName = LEDLNASDK;
+			productReference = 7AA4BA8722C5FD800042477D /* libLEDLNASDK.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7AA4BA7F22C5FD800042477D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = zsw;
+				TargetAttributes = {
+					7AA4BA8622C5FD800042477D = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 7AA4BA8222C5FD800042477D /* Build configuration list for PBXProject "LEDLNASDK" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7AA4BA7E22C5FD800042477D;
+			productRefGroup = 7AA4BA8822C5FD800042477D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7AA4BA8622C5FD800042477D /* LEDLNASDK */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7AA4BA8322C5FD800042477D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7AA4BAA222C5FE7D0042477D /* GCDAsyncSocket.m in Sources */,
+				7AA4BABF22C5FECD0042477D /* CLUPnPAVPositionInfo.m in Sources */,
+				7AA4BABD22C5FECD0042477D /* GDataXMLNode.m in Sources */,
+				7AA4BAC122C5FECD0042477D /* CLUPnPDevice.m in Sources */,
+				7AA4BAA322C5FE7D0042477D /* GCDAsyncUdpSocket.m in Sources */,
+				7AA4BAC022C5FECD0042477D /* CLUPnPAction.m in Sources */,
+				7AA4BABE22C5FECD0042477D /* MRDLNA.m in Sources */,
+				7AA4BAC422C5FECD0042477D /* StopAction.m in Sources */,
+				7AA4BAC322C5FECD0042477D /* CLUPnPRenderer.m in Sources */,
+				7AA4BAC222C5FECD0042477D /* CLUPnPServer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		7AA4BA8E22C5FD800042477D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7AA4BA8F22C5FD800042477D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7AA4BA9122C5FD800042477D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lxml2",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7AA4BA9222C5FD800042477D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lxml2",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7AA4BA8222C5FD800042477D /* Build configuration list for PBXProject "LEDLNASDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7AA4BA8E22C5FD800042477D /* Debug */,
+				7AA4BA8F22C5FD800042477D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7AA4BA9022C5FD800042477D /* Build configuration list for PBXNativeTarget "LEDLNASDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7AA4BA9122C5FD800042477D /* Debug */,
+				7AA4BA9222C5FD800042477D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7AA4BA7F22C5FD800042477D /* Project object */;
+}
