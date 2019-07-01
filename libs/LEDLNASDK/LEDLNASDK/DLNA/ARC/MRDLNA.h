@@ -64,6 +64,11 @@
 - (void)startSearch;
 
 /**
+ 退出投屏
+ */
+- (void)close;
+
+/**
  DLNA投屏
  */
 - (void)startDLNA;

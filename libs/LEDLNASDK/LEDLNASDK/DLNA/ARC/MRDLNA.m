@@ -105,6 +105,12 @@ static dispatch_once_t once;
     [self.upd start];
 }
 
+/**
+ close
+ */
+- (void)close{
+    [self.upd stop];
+}
 
 /**
  设置音量

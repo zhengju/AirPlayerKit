@@ -98,6 +98,7 @@
         
     }else{//dlna
         [self.dlnaManager endDLNA];
+        [self.dlnaManager close];
         _airPlay = YES;
         [self.avPlayer seekToTime:CMTimeMake(self.currentTime, 1) completionHandler:^(BOOL finished) {
             [self.avPlayer play];
