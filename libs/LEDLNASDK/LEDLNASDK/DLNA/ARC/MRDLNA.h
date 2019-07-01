@@ -33,10 +33,13 @@
  获取音量回调
  */
 - (void)dlnaGetVolumeResponse:(NSString *)volume;
+
 /**
- 播放进度的回调
+ 时间进度
+
+ @param info info
  */
--(void)dlnaBroadcastProgress:(NSString*)progress;
+- (void)dlnaGetPositionInfoResponse:(CLUPnPAVPositionInfo *)info;
 
 @end
 
@@ -84,6 +87,12 @@
  暂停
  */
 - (void)dlnaPause;
+
+/**
+ 播放进度单位转换成string
+ */
+- (NSString *)timeFormatted:(NSInteger)totalSeconds;
+
 
 /**
  设置音量 volume建议传0-100之间字符串

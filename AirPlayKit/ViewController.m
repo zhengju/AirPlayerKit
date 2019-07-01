@@ -24,8 +24,8 @@
 @property(nonatomic,strong) AVPlayerLayer   * playerLayer;
 @property(nonatomic,strong) MPVolumeView     * volumeView;
 @property(nonatomic,strong) UIButton     * mpButton;
-
-
+@property (nonatomic,assign)float  totalTime;
+@property (nonatomic,assign)float  currentTime;//播放时间
 @property (weak, nonatomic) IBOutlet UILabel *currentrender;
 
 @property (weak, nonatomic) IBOutlet UIView *playerView;
@@ -48,15 +48,15 @@
     self.dlnaManager.delegate = self;
     
     [self.dlnaManager startDLNA];
-    
-    
-    
+
+    [self.dlnaManager startSearch];
     
     self.view.backgroundColor = [UIColor blueColor];
     [self addNotification];
     [self initPlayer];
     
     [self sendTestRequest];
+    
 }
 /**
  DLNA功能只有在用户允许了网络权限后才能使用
@@ -77,6 +77,16 @@
 }
 - (IBAction)sliderValueAction:(UISlider *)sender {
     
+    if (_airPlay) {
+        
+        CMTime time = CMTimeMake(sender.value*self.totalTime, 1);
+        [self.avPlayer seekToTime:time toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero completionHandler:^(BOOL finished) {
+        }];
+        
+    }else{
+        [self.dlnaManager seekChanged:sender.value*self.totalTime];
+    }
+
 }
 #pragma mark - 全屏
 - (IBAction)clickToFullScreen:(UIButton *)sender {
@@ -89,7 +99,10 @@
     }else{//dlna
         [self.dlnaManager endDLNA];
         _airPlay = YES;
-        [self.avPlayer play];
+        [self.avPlayer seekToTime:CMTimeMake(self.currentTime, 1) completionHandler:^(BOOL finished) {
+            [self.avPlayer play];
+        }];
+        self.currentrender.text = @"乐播投屏(无)";
     }
 }
 
@@ -104,6 +117,7 @@
         self.playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:url]];
         self.avPlayer = [AVPlayer playerWithPlayerItem:_playerItem];
         [self.avPlayer play];
+        
     }else{
         self.playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:url]];
         self.avPlayer = [AVPlayer playerWithPlayerItem:_playerItem];
@@ -135,9 +149,53 @@
     }
 
 }
-- (IBAction)clickToChooseRender:(UIButton *)sender {
-    
+#pragma mark - 搜索
+- (IBAction)clickToSearchRender:(UIButton *)sender {
     [self.dlnaManager startSearch];
+}
+
+
+- (IBAction)clickToChooseRender:(UIButton *)sender {
+
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"渲染器"
+                                                                              message:@"请选择渲染器"
+                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction * cancelAction =[UIAlertAction actionWithTitle:@"取消"
+                                                           style:(UIAlertActionStyleCancel)
+                                                         handler:NULL];
+    [alertController addAction:cancelAction];
+    
+    for (int i = 0;  i < self.devices.count; i ++) {
+        __weak typeof(self) wSelf = self;
+        
+        CLUPnPDevice * renderDevice = self.devices[i];
+        
+        UIAlertAction * action = [UIAlertAction actionWithTitle:renderDevice.friendlyName style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            wSelf.currentDevice = renderDevice;
+            
+            NSString *testUrl = @"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4";
+            CLUPnPDevice * device = self.devices.firstObject;
+            wSelf.dlnaManager.device = device;
+            wSelf.dlnaManager.playUrl = testUrl;
+            [wSelf.dlnaManager startDLNA];
+            [wSelf.dlnaManager dlnaPlay];
+            [wSelf.dlnaManager seekChanged:CMTimeGetSeconds(self.avPlayer.currentItem.currentTime)];
+            
+            
+            self.currentrender.text = [NSString stringWithFormat:@"%@(DLNA)",device.friendlyName];
+            
+        }];
+        [alertController addAction:action];
+    }
+    
+    UIAlertAction * action = [UIAlertAction actionWithTitle:@"AirPlay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self->_airPlay = YES;
+        [self.mpButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+    }];
+    [alertController addAction:action];
+    
+    [self presentViewController:alertController animated:YES completion:NULL];
+    
 
 }
 - (IBAction)clickToAddVoice:(UIButton *)sender {
@@ -197,24 +255,35 @@
     }       
     
     if (@available(iOS 10.0, *)) {
-       [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES
+       [NSTimer scheduledTimerWithTimeInterval:0.5 repeats:YES
                                                             block:^(NSTimer * _Nonnull timer) {
                                                                
-                                                                if (self.avPlayer.rate == 1) {
-                                                                    NSLog(@"----%f",CMTimeGetSeconds(self.avPlayer.currentItem.currentTime));
-                                                                }
-                                                                
-                                                                if (!self->_airPlay && [self.dlnaManager getIsPlaying]) {
-                                                                    
-                                                                    [self.dlnaManager getPositionInfo];
-                                                                }
+                                                                [self timeTimer];
 
                                                             }];
     } else {
-        // Fallback on earlier versions
+        [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(timeTimer) userInfo:nil repeats:YES];
     }
 
 }
+
+- (void)timeTimer{
+    if (self.avPlayer.rate == 1) {
+        
+        self.totalTime = CMTimeGetSeconds(self.avPlayer.currentItem.duration);
+        
+        self.playSlider.value = CMTimeGetSeconds(self.avPlayer.currentItem.currentTime)/CMTimeGetSeconds(self.avPlayer.currentItem.duration);
+        
+        self.timeInfoLabel.text = [NSString stringWithFormat:@"%@/%@",[self.dlnaManager timeFormatted:CMTimeGetSeconds(self.avPlayer.currentItem.currentTime)],[self.dlnaManager timeFormatted:CMTimeGetSeconds(self.avPlayer.currentItem.duration)]];
+        
+    }
+    
+    if (!self->_airPlay && [self.dlnaManager getIsPlaying]) {
+        
+        [self.dlnaManager getPositionInfo];
+    }
+}
+
 -(void)wirelessRouteActiveNotification:(NSNotification*) notification
 {
     MPVolumeView* volumeView = (MPVolumeView*)notification.object;
@@ -274,42 +343,7 @@
     }
     
     
-    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"渲染器"
-                                                                              message:@"请选择渲染器"
-                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction * cancelAction =[UIAlertAction actionWithTitle:@"取消"
-                                                           style:(UIAlertActionStyleCancel)
-                                                         handler:NULL];
-    [alertController addAction:cancelAction];
     
-    for (int i = 0;  i < self.devices.count; i ++) {
-        __weak typeof(self) wSelf = self;
-        
-        CLUPnPDevice * renderDevice = self.devices[i];
-        
-        UIAlertAction * action = [UIAlertAction actionWithTitle:renderDevice.friendlyName style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            wSelf.currentDevice = renderDevice;
-            
-            NSString *testUrl = @"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4";
-            CLUPnPDevice * device = self.devices.firstObject;
-            wSelf.dlnaManager.device = device;
-            wSelf.dlnaManager.playUrl = testUrl;
-            [wSelf.dlnaManager startDLNA];
-            [wSelf.dlnaManager dlnaPlay];
-            
-            self.currentrender.text = [NSString stringWithFormat:@"%@(DLNA)",device.friendlyName];
-            
-        }];
-        [alertController addAction:action];
-    }
-    
-    UIAlertAction * action = [UIAlertAction actionWithTitle:@"AirPlay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        self->_airPlay = YES;
-        [self.mpButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-    }];
-    [alertController addAction:action];
-    
-    [self presentViewController:alertController animated:YES completion:NULL];
     
 }
 
@@ -328,5 +362,16 @@
         });
 
 }
+- (void)dlnaGetPositionInfoResponse:(CLUPnPAVPositionInfo *)info{
+   
+    self.totalTime = info.trackDuration;
+    
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.playSlider.value = info.relTime/info.trackDuration;
+            self.currentTime = info.relTime;
+            self.timeInfoLabel.text = [NSString stringWithFormat:@"%@/%@",[self.dlnaManager timeFormatted:info.relTime],[self.dlnaManager timeFormatted:info.trackDuration]];
+        });
 
+    NSLog(@"upnpGetPositionInfoResponse %f %f %f",info.trackDuration,info.absTime,info.relTime);
+}
 @end

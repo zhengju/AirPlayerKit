@@ -220,11 +220,13 @@ static dispatch_once_t once;
         [self.delegate dlnaPause];
     }
 }
+#pragma mark - 获取视频现在的播放进度的回调(里面有播放的总时间）
 - (void)upnpGetPositionInfoResponse:(CLUPnPAVPositionInfo *)info{
     
-    NSLog(@"upnpGetPositionInfoResponse %f %f %f",info.trackDuration,info.absTime,info.relTime);
-    
-    
+    if ([self.delegate respondsToSelector:@selector(dlnaGetPositionInfoResponse:)]) {
+        [self.delegate dlnaGetPositionInfoResponse:info];
+    }
+
     if(_isJump){
         [self.render seek:info.relTime+(_jumpTime)];
         _isJump = NO;
