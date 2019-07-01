@@ -18,13 +18,18 @@
 @property(nonatomic,assign) NSInteger seekTime;
 @property(nonatomic,assign) BOOL isPlaying;
 
+@property(nonatomic,assign) BOOL isJump;
+@property (nonatomic,assign)float  jumpTime;
+
 @end
 
 @implementation MRDLNA
 
+static MRDLNA *instance = nil;
+static dispatch_once_t once;
+
 + (MRDLNA *)sharedMRDLNAManager{
-    static MRDLNA *instance = nil;
-    static dispatch_once_t once;
+
     dispatch_once(&once, ^{
         instance = [[self alloc] init];
     });
@@ -39,6 +44,7 @@
         self.upd.searchTime = 5;
         self.upd.delegate = self;
         self.dataArray = [NSMutableArray array];
+        
     }
     return self;
 }
@@ -107,7 +113,25 @@
     self.volume = volume;
     [self.render setVolumeWith:volume];
 }
+/**
+ 设置音量 加减固定的值
+ */
+-(void)volumeJumpValue:(NSInteger)jumpVolume{
+    NSInteger currentVolume = [self.volume intValue];
+    currentVolume+=jumpVolume;
+    if(currentVolume<=0) currentVolume = 0;
+    if(currentVolume>=100) currentVolume = 100;
+    self.volume = [NSString stringWithFormat:@"%ld",(long)currentVolume];
+    NSLog(@"设置音量，%@",self.volume);
+    [self.render setVolumeWith:self.volume];
+}
 
+/**
+ 获取音量
+ */
+- (void)getVolume{
+    [self.render getVolume];
+}
 
 /**
  播放进度条
@@ -118,7 +142,21 @@
     [self.render seekToTarget:seekStr Unit:unitREL_TIME];
 }
 
-
+/**
+ 设置快进/退 几秒
+ */
+-(void)dlnaJump:(float)jumpTime{
+    _jumpTime = jumpTime;
+    _isJump =  YES;
+    [self.render getPositionInfo];
+}
+- (void)getPositionInfo{
+    _isJump =  NO;
+    [self.render getPositionInfo];
+}
+- (BOOL)getIsPlaying{
+    return self.isPlaying;
+}
 /**
  播放进度单位转换成string
  */
@@ -171,14 +209,52 @@
 }
 
 - (void)upnpPlayResponse{
+    self.isPlaying = YES;
     if ([self.delegate respondsToSelector:@selector(dlnaStartPlay)]) {
         [self.delegate dlnaStartPlay];
     }
 }
-
+- (void)upnpPauseResponse{
+    self.isPlaying = NO;
+    if ([self.delegate respondsToSelector:@selector(dlnaPause)]) {
+        [self.delegate dlnaPause];
+    }
+}
+- (void)upnpGetPositionInfoResponse:(CLUPnPAVPositionInfo *)info{
+    
+    NSLog(@"upnpGetPositionInfoResponse %f %f %f",info.trackDuration,info.absTime,info.relTime);
+    
+    
+    if(_isJump){
+        [self.render seek:info.relTime+(_jumpTime)];
+        _isJump = NO;
+        _jumpTime = 0;
+    }
+}
+- (void)upnpNextResponse{
+    
+}
+- (void)upnpSetVolumeResponse{
+    NSLog(@"upnpSetVolumeResponse success");
+}
+- (void)upnpSetNextAVTransportURIResponse{
+    
+}
+- (void)upnpGetVolumeResponse:(NSString *)volume{
+    NSLog(@"upnpGetVolumeResponse success %@",volume);
+    self.volume = volume;
+    if ([self.delegate respondsToSelector:@selector(dlnaGetVolumeResponse:)]) {
+        [self.delegate dlnaGetVolumeResponse:self.volume];
+    }
+}
 #pragma mark Set&Get
 - (void)setSearchTime:(NSInteger)searchTime{
     _searchTime = searchTime;
     self.upd.searchTime = searchTime;
+}
+
++(void)destory{
+    once = 0;
+    instance = nil;
 }
 @end

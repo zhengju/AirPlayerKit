@@ -34,6 +34,7 @@
 @property(nonatomic, strong) CLUPnPDevice * currentDevice;
 @property (weak, nonatomic) IBOutlet UILabel *timeInfoLabel;
 @property (weak, nonatomic) IBOutlet UISlider *playSlider;
+@property (weak, nonatomic) IBOutlet UILabel *voiceLabel;
 
 @end
 
@@ -48,7 +49,7 @@
     
     [self.dlnaManager startDLNA];
     
-     [self.dlnaManager startSearch];
+    
     
     
     self.view.backgroundColor = [UIColor blueColor];
@@ -87,6 +88,8 @@
         
     }else{//dlna
         [self.dlnaManager endDLNA];
+        _airPlay = YES;
+        [self.avPlayer play];
     }
 }
 
@@ -133,43 +136,25 @@
 
 }
 - (IBAction)clickToChooseRender:(UIButton *)sender {
-    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"渲染器"
-                                                                              message:@"请选择渲染器"
-                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction * cancelAction =[UIAlertAction actionWithTitle:@"取消"
-                                                           style:(UIAlertActionStyleCancel)
-                                                         handler:NULL];
-    [alertController addAction:cancelAction];
     
-    for (int i = 0;  i < self.devices.count; i ++) {
-        __weak typeof(self) wSelf = self;
-        
-        CLUPnPDevice * renderDevice = self.devices[i];
-        
-        UIAlertAction * action = [UIAlertAction actionWithTitle:renderDevice.friendlyName style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            wSelf.currentDevice = renderDevice;
-            
-            NSString *testUrl = @"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4";
-            CLUPnPDevice * device = self.devices.firstObject;
-            wSelf.dlnaManager.device = device;
-            wSelf.dlnaManager.playUrl = testUrl;
-            [wSelf.dlnaManager startDLNA];
-            [wSelf.dlnaManager dlnaPlay];
-            
-            self.currentrender.text = [NSString stringWithFormat:@"%@(DLNA)",device.friendlyName];
-            
-        }];
-        [alertController addAction:action];
-    }
-    
-    UIAlertAction * action = [UIAlertAction actionWithTitle:@"AirPlay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        self->_airPlay = YES;
-         [self.mpButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-    }];
-    [alertController addAction:action];
-    
-    [self presentViewController:alertController animated:YES completion:NULL];
+    [self.dlnaManager startSearch];
 
+}
+- (IBAction)clickToAddVoice:(UIButton *)sender {
+
+    [self.dlnaManager volumeJumpValue:5];
+}
+- (IBAction)clickToReduceVoice:(UIButton *)sender {
+
+    [self.dlnaManager volumeJumpValue:-5];
+}
+- (IBAction)quickBack:(UIButton *)sender {
+    NSLog(@"快退...");
+    [self.dlnaManager dlnaJump:-5.0];
+}
+- (IBAction)quickGo:(UIButton *)sender {
+    NSLog(@"快进...");
+    [self.dlnaManager dlnaJump:5.0];
 }
 
 -(void)addNotification
@@ -219,6 +204,11 @@
                                                                     NSLog(@"----%f",CMTimeGetSeconds(self.avPlayer.currentItem.currentTime));
                                                                 }
                                                                 
+                                                                if (!self->_airPlay && [self.dlnaManager getIsPlaying]) {
+                                                                    
+                                                                    [self.dlnaManager getPositionInfo];
+                                                                }
+
                                                             }];
     } else {
         // Fallback on earlier versions
@@ -278,12 +268,65 @@
 #pragma mark - DLNADelegate
 - (void)searchDLNAResult:(NSArray *)devicesArray{
     self.devices = devicesArray;
+    
+    if (devicesArray.count == 0 ) {
+        return;
+    }
+    
+    
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"渲染器"
+                                                                              message:@"请选择渲染器"
+                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction * cancelAction =[UIAlertAction actionWithTitle:@"取消"
+                                                           style:(UIAlertActionStyleCancel)
+                                                         handler:NULL];
+    [alertController addAction:cancelAction];
+    
+    for (int i = 0;  i < self.devices.count; i ++) {
+        __weak typeof(self) wSelf = self;
+        
+        CLUPnPDevice * renderDevice = self.devices[i];
+        
+        UIAlertAction * action = [UIAlertAction actionWithTitle:renderDevice.friendlyName style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            wSelf.currentDevice = renderDevice;
+            
+            NSString *testUrl = @"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4";
+            CLUPnPDevice * device = self.devices.firstObject;
+            wSelf.dlnaManager.device = device;
+            wSelf.dlnaManager.playUrl = testUrl;
+            [wSelf.dlnaManager startDLNA];
+            [wSelf.dlnaManager dlnaPlay];
+            
+            self.currentrender.text = [NSString stringWithFormat:@"%@(DLNA)",device.friendlyName];
+            
+        }];
+        [alertController addAction:action];
+    }
+    
+    UIAlertAction * action = [UIAlertAction actionWithTitle:@"AirPlay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self->_airPlay = YES;
+        [self.mpButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+    }];
+    [alertController addAction:action];
+    
+    [self presentViewController:alertController animated:YES completion:NULL];
+    
 }
 
 - (void)dlnaStartPlay{
     _airPlay = NO;
     [self.avPlayer pause];
-    
+    [self.dlnaManager getVolume];//获取音量
+}
+
+- (void)dlnaGetVolumeResponse:(NSString *)volume{
+    NSLog(@"volum:%@",volume);
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.voiceLabel.text =  [NSString stringWithFormat:@"%ld",[volume integerValue]/5];
+
+        });
+
 }
 
 @end

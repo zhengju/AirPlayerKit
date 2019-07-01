@@ -24,6 +24,20 @@
  */
 - (void)dlnaStartPlay;
 
+/**
+ 投屏暂停
+ */
+- (void)dlnaPause;
+
+/**
+ 获取音量回调
+ */
+- (void)dlnaGetVolumeResponse:(NSString *)volume;
+/**
+ 播放进度的回调
+ */
+-(void)dlnaBroadcastProgress:(NSString*)progress;
+
 @end
 
 @interface MRDLNA : NSObject
@@ -77,12 +91,43 @@
 - (void)volumeChanged:(NSString *)volume;
 
 /**
+ 设置音量 加减固定的值
+ */
+-(void)volumeJumpValue:(NSInteger)jumpVolume;
+
+/**
  设置播放进度 seek单位是秒
  */
 - (void)seekChanged:(NSInteger)seek;
-
+/**
+ 设置快进/退 几秒
+ */
+-(void)dlnaJump:(float)jumpTime;
 /**
  播放切集
  */
 - (void)playTheURL:(NSString *)url;
+
+/**
+ 获取音量，通过代理回调获取
+ */
+- (void)getVolume;
+
+/**
+ 获取播放进度
+ */
+- (void)getPositionInfo;
+
+/**
+ 播放状态 YES:正在播放；NO:暂停播放
+
+ @return BOOL
+ */
+- (BOOL)getIsPlaying;
+
+/**
+ 销毁单例
+ */
++(void)destory;
+
 @end

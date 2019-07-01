@@ -357,7 +357,7 @@
 				DEVELOPMENT_TEAM = 2FFNFZE3QD;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libs/LEDLNASDK/LEDLNASDK\"/**";
 				INFOPLIST_FILE = AirPlayKit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -376,7 +376,7 @@
 				DEVELOPMENT_TEAM = 2FFNFZE3QD;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libs/LEDLNASDK/LEDLNASDK\"/**";
 				INFOPLIST_FILE = AirPlayKit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
