@@ -138,7 +138,9 @@ static dispatch_once_t once;
 - (void)getVolume{
     [self.render getVolume];
 }
-
+- (int)getLocalVolume{
+    return [self.volume intValue]/5;
+}
 /**
  播放进度条
  */
@@ -208,7 +210,7 @@ static dispatch_once_t once;
 }
 
 - (void)upnpGetTransportInfoResponse:(CLUPnPTransportInfo *)info{
-//    NSLog(@"%@ === %@", info.currentTransportState, info.currentTransportStatus);
+      NSLog(@"%@ === %@", info.currentTransportState, info.currentTransportStatus);
     if (!([info.currentTransportState isEqualToString:@"PLAYING"] || [info.currentTransportState isEqualToString:@"TRANSITIONING"])) {
         [self.render play];
     }
@@ -227,10 +229,33 @@ static dispatch_once_t once;
     }
 }
 #pragma mark - 获取视频现在的播放进度的回调(里面有播放的总时间）
+
+static int numCount = 0;
+
 - (void)upnpGetPositionInfoResponse:(CLUPnPAVPositionInfo *)info{
     
     if ([self.delegate respondsToSelector:@selector(dlnaGetPositionInfoResponse:)]) {
         [self.delegate dlnaGetPositionInfoResponse:info];
+    }
+
+    if (info.trackDuration == 0.0 && info.absTime == 0 && info.relTime == 0) {//总时间为0即停止播放，需断开连接
+        
+        numCount++;
+        
+        [self.render getTransportInfo];
+        
+        if (numCount > 5) {
+            
+            self.isPlaying = NO;
+            
+            numCount = 0;
+            [self endDLNA];
+            [self close];
+            if ([self.delegate respondsToSelector:@selector(dlnaStop)]) {
+                [self.delegate dlnaStop];
+            }
+        }
+        
     }
 
     if(_isJump){

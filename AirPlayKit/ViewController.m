@@ -22,6 +22,7 @@
 @property(nonatomic,strong) AVPlayer        * avPlayer;
 @property(nonatomic,strong) AVPlayerItem    * playerItem;
 @property(nonatomic,strong) AVPlayerLayer   * playerLayer;
+/** 音量View*/
 @property(nonatomic,strong) MPVolumeView     * volumeView;
 @property(nonatomic,strong) UIButton     * mpButton;
 @property (nonatomic,assign)float  totalTime;
@@ -36,6 +37,8 @@
 @property (weak, nonatomic) IBOutlet UISlider *playSlider;
 @property (weak, nonatomic) IBOutlet UILabel *voiceLabel;
 
+/** 设置音量滚动View*/
+@property (nonatomic, strong) UISlider *volumeViewSlider;
 @end
 
 @implementation ViewController
@@ -56,7 +59,7 @@
     [self initPlayer];
     
     [self sendTestRequest];
-    
+
 }
 /**
  DLNA功能只有在用户允许了网络权限后才能使用
@@ -95,7 +98,8 @@
 #pragma mark - 关闭投屏
 - (IBAction)clickToClose:(UIButton *)sender {
     if (_airPlay) {
-        
+      
+        [self.mpButton sendActionsForControlEvents:UIControlEventTouchUpInside];
     }else{//dlna
         [self.dlnaManager endDLNA];
         [self.dlnaManager close];
@@ -116,14 +120,14 @@
     if (_airPlay) {
         
         self.playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:url]];
-        self.avPlayer = [AVPlayer playerWithPlayerItem:_playerItem];
+        [self.avPlayer replaceCurrentItemWithPlayerItem:self.playerItem];//切换下一个
         [self.avPlayer play];
         
     }else{
-        self.playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:url]];
-        self.avPlayer = [AVPlayer playerWithPlayerItem:_playerItem];
-        [self.avPlayer pause];
         
+        self.playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:url]];
+        [self.avPlayer replaceCurrentItemWithPlayerItem:self.playerItem];
+        [self.avPlayer pause];
         
         NSString *testVideo = url;
         [self.dlnaManager playTheURL:testVideo];
@@ -190,8 +194,10 @@
     }
     
     UIAlertAction * action = [UIAlertAction actionWithTitle:@"AirPlay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
         self->_airPlay = YES;
         [self.mpButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+        
     }];
     [alertController addAction:action];
     
@@ -199,14 +205,23 @@
     
 
 }
+#pragma mark 声音操作
+
 - (IBAction)clickToAddVoice:(UIButton *)sender {
 
     [self.dlnaManager volumeJumpValue:5];
+
+   [self.volumeViewSlider setValue:(float)[self.dlnaManager getLocalVolume]/16 animated:NO];
+    
 }
+
 - (IBAction)clickToReduceVoice:(UIButton *)sender {
 
     [self.dlnaManager volumeJumpValue:-5];
+    [self.volumeViewSlider setValue:(float)[self.dlnaManager getLocalVolume]/16 animated:NO];
+
 }
+
 - (IBAction)quickBack:(UIButton *)sender {
     NSLog(@"快退...");
     [self.dlnaManager dlnaJump:-5.0];
@@ -226,7 +241,35 @@
     //检测当前是否 有支持airPlayer的无线设备
     [center addObserver:self selector:@selector(wirelessAvailableNotification:)
                    name:MPVolumeViewWirelessRoutesAvailableDidChangeNotification object:nil];
+    
+    NSError *error;
+    [[AVAudioSession sharedInstance] setActive:YES error:&error];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(volumeChanged:) name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
+    
 }
+
+/**
+ *  点击音量键出发事件
+ */
+- (void)volumeChanged:(NSNotification *)notification {
+    
+    //获取当前系统音量
+    NSDictionary *dic = [notification userInfo];
+    NSString * volume = [NSString stringWithFormat:@"%@",dic[@"AVSystemController_AudioVolumeNotificationParameter"]];
+
+    
+    int vol = [volume floatValue]*16;
+    
+    NSLog(@"volume is %.d",vol);
+ 
+    [self.dlnaManager volumeChanged:[NSString stringWithFormat:@"%d",vol*5]];
+    
+    self.voiceLabel.text = [NSString stringWithFormat:@"%d",vol];
+    
+#warning iphone和tv声音的一个联动
+    
+}
+
 -(void)initPlayer
 {
     self.playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"]];
@@ -245,9 +288,16 @@
     [self.volumeView setShowsVolumeSlider:NO];
     [self.volumeView sizeToFit];
     self.volumeView.center = CGPointMake(-1000, -1000);
-
     [self.view addSubview:_volumeView];
 
+    
+    for (UIView *view in [self.volumeView subviews]){
+        if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
+            self.volumeViewSlider = (UISlider*)view;
+            break;
+        }
+    }
+    
     for (UIButton *button in self.volumeView.subviews) {
         if ([button isKindOfClass:[UIButton class]]) {
             self.mpButton = button;
@@ -374,5 +424,17 @@
         });
 
     NSLog(@"upnpGetPositionInfoResponse %f %f %f",info.trackDuration,info.absTime,info.relTime);
+}
+- (void)dlnaStop{
+    [self.dlnaManager endDLNA];
+    [self.dlnaManager close];
+    _airPlay = YES;
+    [self.avPlayer seekToTime:CMTimeMake(self.currentTime, 1) completionHandler:^(BOOL finished) {
+        [self.avPlayer play];
+    }];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.currentrender.text = @"乐播投屏(无)";
+        });
 }
 @end

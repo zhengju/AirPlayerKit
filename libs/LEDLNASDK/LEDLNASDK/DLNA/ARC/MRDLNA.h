@@ -41,6 +41,12 @@
  */
 - (void)dlnaGetPositionInfoResponse:(CLUPnPAVPositionInfo *)info;
 
+/**
+ 停止或投屏被挤掉
+ */
+- (void)dlnaStop;
+
+
 @end
 
 @interface MRDLNA : NSObject
@@ -126,6 +132,11 @@
  获取音量，通过代理回调获取
  */
 - (void)getVolume;
+
+/**
+ 获取全局变量值
+ */
+- (int)getLocalVolume;
 
 /**
  获取播放进度
