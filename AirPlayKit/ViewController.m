@@ -43,6 +43,18 @@
 
 @implementation ViewController
 
+
+- (BOOL) canBecomeFirstResponder {return YES;}
+- (void) viewDidAppear: (BOOL) animated {
+    [super viewDidAppear:animated];
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    [self becomeFirstResponder];
+}
+- (void) viewWillDisappear: (BOOL) animated {
+    [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
+    [self resignFirstResponder];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -61,6 +73,20 @@
     [self sendTestRequest];
 
 }
+
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event{
+    if (event.type == UIEventTypeRemoteControl) {
+        switch (event.subtype) {
+            case UIEventSubtypeRemoteControlTogglePlayPause:
+                NSLog(@"pause");
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
+
 /**
  DLNA功能只有在用户允许了网络权限后才能使用
  */
@@ -274,7 +300,11 @@
 {
     self.playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"]];
     self.avPlayer = [AVPlayer playerWithPlayerItem:_playerItem];
+
     
+    [self.avPlayer addObserver:self forKeyPath:@"airPlayVideoActive" options:NSKeyValueObservingOptionNew |NSKeyValueObservingOptionOld context:nil];//监控投屏状态
+    self.avPlayer.usesExternalPlaybackWhileExternalScreenIsActive = YES;//指示当外部屏幕模式处于活动状态时，播放机是否应自动切换到外部播放模式
+
     self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:_avPlayer];
     self.playerLayer.frame = self.playerView.bounds;
     self.playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
@@ -317,7 +347,16 @@
     }
 
 }
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if ([keyPath isEqualToString:@"airPlayVideoActive"]) {
+        if ([[change objectForKey:NSKeyValueChangeNewKey]  isEqual: @(1)]) {
+            NSLog(@"AirPlay play");
+        }else{
+            NSLog(@"AvPlayer play");
+        }
+    }
 
+}
 - (void)timeTimer{
     if (self.avPlayer.rate == 1) {
         
@@ -338,6 +377,13 @@
 -(void)wirelessRouteActiveNotification:(NSNotification*) notification
 {
     MPVolumeView* volumeView = (MPVolumeView*)notification.object;
+    
+    NSLog(@"-------wirelessRouteActiveNotification--------");
+    
+    
+//    [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = @{MPNowPlayingInfoPropertyPlaybackRate:@"3"};
+//
+//    NSLog(@"[MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo %@",[MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo);
     
     //当前投影的设备是否 可以 投影
     if(volumeView.isWirelessRouteActive) {

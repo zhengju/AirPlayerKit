@@ -19,7 +19,7 @@
 @synthesize successCallback = _successCallback;
 @synthesize failureCallback = _failureCallback;
 
-- (instancetype)initWithDevice:(CLUPnPDevice *) device Success:(void(^)())successBlock failure:(void(^)(void))failureBlock
+- (instancetype)initWithDevice:(CLUPnPDevice *) device Success:(void(^)(void))successBlock failure:(void(^)(void))failureBlock
 {
     self = [self init];
     

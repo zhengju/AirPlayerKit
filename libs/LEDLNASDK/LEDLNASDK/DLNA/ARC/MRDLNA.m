@@ -8,6 +8,8 @@
 #import "MRDLNA.h"
 #import "StopAction.h"
 
+
+
 @interface MRDLNA()<CLUPnPServerDelegate, CLUPnPResponseDelegate>
 
 @property(nonatomic,strong) CLUPnPServer *upd;              //MDS服务器
@@ -24,6 +26,8 @@
 @end
 
 @implementation MRDLNA
+
+static int numCount = 0;//计算超时次数
 
 static MRDLNA *instance = nil;
 static dispatch_once_t once;
@@ -72,6 +76,9 @@ static dispatch_once_t once;
  初始化CLUPnPRenderer
  */
 -(void)initCLUPnPRendererAndDlnaPlay{
+    
+    numCount = 0;
+    
     self.render = [[CLUPnPRenderer alloc] initWithModel:self.device];
     self.render.delegate = self;
     [self.render setAVTransportURL:self.playUrl];
@@ -180,6 +187,8 @@ static dispatch_once_t once;
  播放切集
  */
 - (void)playTheURL:(NSString *)url{
+    numCount = 0;
+    
     self.playUrl = url;
     [self.render setAVTransportURL:url];
 }
@@ -230,7 +239,7 @@ static dispatch_once_t once;
 }
 #pragma mark - 获取视频现在的播放进度的回调(里面有播放的总时间）
 
-static int numCount = 0;
+
 
 - (void)upnpGetPositionInfoResponse:(CLUPnPAVPositionInfo *)info{
     
