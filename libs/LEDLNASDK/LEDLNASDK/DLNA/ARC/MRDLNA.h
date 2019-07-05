@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "CLUPnP.h"
 #import "CLUPnPDevice.h"
+#import "Common.h"
 
 @protocol DLNADelegate <NSObject>
 
@@ -123,10 +124,16 @@
  设置快进/退 几秒
  */
 -(void)dlnaJump:(float)jumpTime;
+
 /**
  播放切集
  */
 - (void)playTheURL:(NSString *)url;
+
+/**
+ 设置 下一个 投屏地址，播放的为uristr的下一个
+ */
+- (void)setNextAVTransportURIStr:(NSString *)uriStr;
 
 /**
  获取音量，通过代理回调获取
@@ -154,5 +161,31 @@
  销毁单例
  */
 +(void)destory;
+
+/**
+ 发送订阅消息
+ 
+ @param time 订阅事件
+ @param callBack 回调地址
+ @param serverType 服务类型
+ 接收回调会在内部建立一个http server,需要保存sid
+ 
+ */
+- (void)sendSubcirbeWithTime:(int)time callBack:(NSString*)callBack serverType:(LEUpnpServerType)serverType result:(void(^)(BOOL success))result;
+
+/**
+ 续订某项服务
+ 注意:要在之前订阅的时间之前发起，否则无效
+ @param time 续订的时间
+ @param serverType 服务类型
+ */
+- (void)contractSubscirbeWithTime:(int)time serverType:(LEUpnpServerType)serverType result:(void(^)(BOOL success))result;
+
+/**
+ 移除订阅
+ 
+ @param serverType 服务类型
+ */
+- (void)removeSubscirbeWithServerType:(LEUpnpServerType)serverType result:(void(^)(BOOL success))result;
 
 @end

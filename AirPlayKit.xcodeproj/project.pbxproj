@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A97C10E22CEFE7D00883180 /* NSArray+HYBUnicodeReadable.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A97C10822CEFE7D00883180 /* NSArray+HYBUnicodeReadable.m */; };
+		7A97C10F22CEFE7D00883180 /* NSDictionary+HYBUnicodeReadable.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A97C10922CEFE7D00883180 /* NSDictionary+HYBUnicodeReadable.m */; };
+		7A97C11022CEFE7D00883180 /* NSSet+HYBUnicodeReadable.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A97C10A22CEFE7D00883180 /* NSSet+HYBUnicodeReadable.m */; };
 		7AA4BA9C22C5FDE50042477D /* libLEDLNASDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA4BA9822C5FDB40042477D /* libLEDLNASDK.a */; };
 		7AA4BADA22C602FF0042477D /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA4BACA22C5FF170042477D /* libxml2.tbd */; };
 		7AE0AE1522C49B3B00A7A0C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE0AE1422C49B3B00A7A0C2 /* AppDelegate.m */; };
@@ -35,6 +38,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7A97C10822CEFE7D00883180 /* NSArray+HYBUnicodeReadable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HYBUnicodeReadable.m"; sourceTree = "<group>"; };
+		7A97C10922CEFE7D00883180 /* NSDictionary+HYBUnicodeReadable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+HYBUnicodeReadable.m"; sourceTree = "<group>"; };
+		7A97C10A22CEFE7D00883180 /* NSSet+HYBUnicodeReadable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+HYBUnicodeReadable.m"; sourceTree = "<group>"; };
+		7A97C10B22CEFE7D00883180 /* NSArray+HYBUnicodeReadable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HYBUnicodeReadable.h"; sourceTree = "<group>"; };
+		7A97C10C22CEFE7D00883180 /* NSDictionary+HYBUnicodeReadable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+HYBUnicodeReadable.h"; sourceTree = "<group>"; };
+		7A97C10D22CEFE7D00883180 /* NSSet+HYBUnicodeReadable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+HYBUnicodeReadable.h"; sourceTree = "<group>"; };
 		7AA4BA9322C5FDB40042477D /* LEDLNASDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LEDLNASDK.xcodeproj; path = libs/LEDLNASDK/LEDLNASDK.xcodeproj; sourceTree = SOURCE_ROOT; };
 		7AA4BACA22C5FF170042477D /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		7AA4BACC22C5FF500042477D /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
@@ -63,6 +72,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A97C10622CEFE6400883180 /* THREE */ = {
+			isa = PBXGroup;
+			children = (
+				7A97C10722CEFE7D00883180 /* HYBUnicodeReadable */,
+			);
+			path = THREE;
+			sourceTree = "<group>";
+		};
+		7A97C10722CEFE7D00883180 /* HYBUnicodeReadable */ = {
+			isa = PBXGroup;
+			children = (
+				7A97C10822CEFE7D00883180 /* NSArray+HYBUnicodeReadable.m */,
+				7A97C10922CEFE7D00883180 /* NSDictionary+HYBUnicodeReadable.m */,
+				7A97C10A22CEFE7D00883180 /* NSSet+HYBUnicodeReadable.m */,
+				7A97C10B22CEFE7D00883180 /* NSArray+HYBUnicodeReadable.h */,
+				7A97C10C22CEFE7D00883180 /* NSDictionary+HYBUnicodeReadable.h */,
+				7A97C10D22CEFE7D00883180 /* NSSet+HYBUnicodeReadable.h */,
+			);
+			path = HYBUnicodeReadable;
+			sourceTree = "<group>";
+		};
 		7AA4BA9422C5FDB40042477D /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +130,7 @@
 		7AE0AE1222C49B3B00A7A0C2 /* AirPlayKit */ = {
 			isa = PBXGroup;
 			children = (
+				7A97C10622CEFE6400883180 /* THREE */,
 				7AA4BA9322C5FDB40042477D /* LEDLNASDK.xcodeproj */,
 				7AE0AE1322C49B3B00A7A0C2 /* AppDelegate.h */,
 				7AE0AE1422C49B3B00A7A0C2 /* AppDelegate.m */,
@@ -206,7 +237,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A97C10E22CEFE7D00883180 /* NSArray+HYBUnicodeReadable.m in Sources */,
+				7A97C10F22CEFE7D00883180 /* NSDictionary+HYBUnicodeReadable.m in Sources */,
 				7AE0AE1822C49B3B00A7A0C2 /* ViewController.m in Sources */,
+				7A97C11022CEFE7D00883180 /* NSSet+HYBUnicodeReadable.m in Sources */,
 				7AE0AE2322C49B3C00A7A0C2 /* main.m in Sources */,
 				7AE0AE1522C49B3B00A7A0C2 /* AppDelegate.m in Sources */,
 			);

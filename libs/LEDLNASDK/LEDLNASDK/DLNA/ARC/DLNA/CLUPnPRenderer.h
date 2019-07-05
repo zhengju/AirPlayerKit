@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "CLUPnPResponseDelegate.h"
-
+#import "Common.h"
 @class CLUPnPDevice;
 @interface CLUPnPRenderer : NSObject
 
 @property (nonatomic, strong) CLUPnPDevice *model;
+
+/**订阅后存储的sid，一个设备可以有多个服务，所以理论上存在可以订阅多个*/
+@property (nonatomic,strong,readonly)NSMutableDictionary *subscribeSidDict;
 
 @property (nonatomic, strong) id<CLUPnPResponseDelegate>delegate;
 
@@ -95,5 +98,28 @@
  */
 - (void)setVolumeWith:(NSString *)value;
 
+/**
+ 针对某项服务发送订阅消息
+ 
+ @param time 订阅多久时间
+ @param serverType 服务类型
+ @param callBack 数据回调的链接地址，这里采用了GCDWebServer获取回调，但是demo中的不知道对不对哈
+ */
+- (void)sendSubscribeRequestWithTime:(int)time serverType:(LEUpnpServerType)serverType callBack:(NSString*)callBack result:(void(^)(BOOL success))result;
+
+/**
+ 续订某项服务
+ 注意:要在之前订阅的时间之前发起，否则无效
+ @param time 续订的时间
+ @param serverType 服务类型
+ */
+- (void)contractSubscirbeWithTime:(int)time serverType:(LEUpnpServerType)serverType result:(void(^)(BOOL success))result;
+
+/**
+ 移除针对某项服务的订阅
+ 
+ @param serverType 服务类型
+ */
+- (void)removeSubscribeWithServerType:(LEUpnpServerType)serverType result:(void(^)(BOOL success))result;
 
 @end

@@ -66,12 +66,15 @@
 
     [self.dlnaManager startSearch];
     
+
+    
     self.view.backgroundColor = [UIColor blueColor];
+    
     [self addNotification];
+    
     [self initPlayer];
     
     [self sendTestRequest];
-
 }
 
 - (void)remoteControlReceivedWithEvent:(UIEvent *)event{
@@ -205,14 +208,20 @@
             wSelf.currentDevice = renderDevice;
             
             NSString *testUrl = @"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4";
-            CLUPnPDevice * device = self.devices.firstObject;
+            CLUPnPDevice * device = self.devices[i];
             wSelf.dlnaManager.device = device;
             wSelf.dlnaManager.playUrl = testUrl;
             [wSelf.dlnaManager startDLNA];
             [wSelf.dlnaManager dlnaPlay];
             [wSelf.dlnaManager seekChanged:CMTimeGetSeconds(self.avPlayer.currentItem.currentTime)];
             
-            
+            [self.dlnaManager sendSubcirbeWithTime:600 callBack:@"http://10.58.112.44:8899/dlna/callback" serverType:ServerTypeRenderingControl result:^(BOOL success) {
+                if (success) {
+                    NSLog(@"订阅服务 ok");
+                }else{
+                    NSLog(@"订阅服务 no");
+                }
+            }];
             self.currentrender.text = [NSString stringWithFormat:@"%@(DLNA)",device.friendlyName];
             
         }];
@@ -237,7 +246,7 @@
 
     [self.dlnaManager volumeJumpValue:5];
 
-   [self.volumeViewSlider setValue:(float)[self.dlnaManager getLocalVolume]/16 animated:NO];
+    [self.volumeViewSlider setValue:(float)[self.dlnaManager getLocalVolume]/16 animated:NO];
     
 }
 
@@ -469,7 +478,7 @@
             self.timeInfoLabel.text = [NSString stringWithFormat:@"%@/%@",[self.dlnaManager timeFormatted:info.relTime],[self.dlnaManager timeFormatted:info.trackDuration]];
         });
 
-    NSLog(@"upnpGetPositionInfoResponse %f %f %f",info.trackDuration,info.absTime,info.relTime);
+   // NSLog(@"upnpGetPositionInfoResponse %f %f %f",info.trackDuration,info.absTime,info.relTime);
 }
 - (void)dlnaStop{
     [self.dlnaManager endDLNA];

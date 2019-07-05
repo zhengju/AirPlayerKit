@@ -18,6 +18,7 @@
     self = [super init];
     if (self) {
         _model = model;
+        _subscribeSidDict = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -117,6 +118,124 @@
     [action setArgumentValue:@"Master" forName:@"Channel"];
     [action setArgumentValue:value forName:@"DesiredVolume"];
     [self postRequestWith:action];
+}
+
+- (void)sendSubscribeRequestWithTime:(int)time serverType:(LEUpnpServerType)serverType callBack:(NSString*)callBack result:(void(^)(BOOL success))result
+{
+    if(self.model == nil)return;
+    NSString *url = [self.model eventSubURLWithServerType:serverType];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    request.HTTPMethod = @"SUBSCRIBE";
+    NSString *version = [UIDevice currentDevice].systemVersion;
+    NSString *userAgent = [NSString stringWithFormat:@"iOS/%@ UPnP/1.1 SCDLNA/1.0",version];
+    [request addValue:userAgent forHTTPHeaderField:@"User-Agent"];
+    [request addValue:[NSString stringWithFormat:@"<%@>",callBack] forHTTPHeaderField:@"CALLBACK"];
+    [request addValue:@"upnp:event" forHTTPHeaderField:@"NT"];
+    [request addValue:[NSString stringWithFormat:@"Second-%d",time] forHTTPHeaderField:@"TIMEOUT"];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if(error){
+            NSLog(@"%@",error);
+            if(result){
+                result(NO);
+            }
+            return ;
+        }
+       
+        //正常结果返回参考
+        //    HTTP/1.1 200 OK
+        //    Server: Linux/3.10.33 UPnP/1.0 IQIYIDLNA/iqiyidlna/NewDLNA/1.0
+        //    SID: uuid:f392-a153-571c-e10b
+        //        Content-Type: text/html; charset="utf-8"
+        //    TIMEOUT: Second-3600
+        //    Date: Thu, 03 Mar 2016 19:01:42 GMT
+        NSHTTPURLResponse *resultResponse = (NSHTTPURLResponse*)response;
+        
+        if (resultResponse.statusCode == 200) {//ok
+            
+            if(result){
+                result(YES);
+            }
+            
+            NSString *sid = [resultResponse.allHeaderFields valueForKey:@"SID"];
+            if(sid){
+                NSString *sidKey = serviceType_AVTransport;
+                if(serverType == ServerTypeRenderingControl){
+                    sidKey = serviceType_RenderingControl;
+                }
+                [self->_subscribeSidDict setValue:sid forKey:sidKey];
+                
+            }
+        }else{
+            if(result){
+                result(NO);
+            }
+        }
+ 
+    }];
+    
+    [dataTask resume];
+    
+}
+
+- (void)contractSubscirbeWithTime:(int)time serverType:(LEUpnpServerType)serverType result:(void(^)(BOOL success))result
+{
+    if(self.model == nil)return;
+    NSString *url = [self.model eventSubURLWithServerType:serverType];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    request.HTTPMethod = @"SUBSCRIBE";
+    NSString *subscirbeKey = serviceType_AVTransport;
+    if(serverType == ServerTypeRenderingControl){
+        subscirbeKey =serviceType_RenderingControl;
+    }
+    NSString *sid = [self.subscribeSidDict valueForKey:subscirbeKey];
+    if(sid == nil)return;
+    [request addValue:sid forHTTPHeaderField:@"SID"];
+    [request addValue:[NSString stringWithFormat:@"Second-%d",time] forHTTPHeaderField:@"TIMEOUT"];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if(error){
+            if(result){
+                result(NO);
+            }
+        }else{
+            if(result){
+                result(YES);
+            }
+        }
+    }];
+    
+    [dataTask resume];
+}
+
+- (void)removeSubscribeWithServerType:(LEUpnpServerType)serverType result:(void(^)(BOOL success))result
+{
+    if(self.model == nil)return;
+    NSString *url = [self.model eventSubURLWithServerType:serverType];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    request.HTTPMethod = @"UNSUBSCRIBE";
+    NSString *subscirbeKey = serviceType_AVTransport;
+    if(serverType == ServerTypeRenderingControl){
+        subscirbeKey = serviceType_RenderingControl;
+    }
+    NSString *sid = [self.subscribeSidDict valueForKey:subscirbeKey];
+    if(sid == nil)return;
+    [request addValue:sid forHTTPHeaderField:@"SID"];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if(error){
+            if(result){
+                result(NO);
+            }
+        }else{
+            if(result){
+                result(YES);
+            }
+        }
+    }];
+    
+    [dataTask resume];
 }
 
 #pragma mark -

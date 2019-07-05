@@ -64,6 +64,55 @@
     }
 }
 
+/***
+ 坑点1：有些设备 SCPDURL 、 controlURL 、 eventSubURL 开头包含 / ，有些设备不包含，拼接URL时需要注意。
+ */
+-(NSString*)controlURLWithServerType:(LEUpnpServerType)serverType
+{
+    NSString *url = nil;
+    if(serverType == ServerTypeAVTransport){
+        if(self.AVTransport != nil){
+            if ([[self.AVTransport.controlURL substringToIndex:1] isEqualToString:@"/"]){
+                url = [NSString stringWithFormat:@"%@%@", self.URLHeader, self.AVTransport.controlURL];
+            }else{
+                url = [NSString stringWithFormat:@"%@/%@", self.URLHeader, self.AVTransport.controlURL];
+            }
+        }
+    }else if (serverType == ServerTypeRenderingControl){
+        if(self.RenderingControl != nil){
+            if ([[self.RenderingControl.controlURL substringToIndex:1] isEqualToString:@"/"]){
+                url = [NSString stringWithFormat:@"%@%@", self.URLHeader, self.RenderingControl.controlURL];
+            }else{
+                url = [NSString stringWithFormat:@"%@/%@", self.URLHeader, self.RenderingControl.controlURL];
+            }
+        }
+    }
+    return url;
+}
+
+- (NSString*)eventSubURLWithServerType:(LEUpnpServerType)serverType
+{
+    NSString *url = nil;
+    if(serverType == ServerTypeAVTransport){
+        if(self.AVTransport != nil){
+            if ([[self.AVTransport.controlURL substringToIndex:1] isEqualToString:@"/"]){
+                url = [NSString stringWithFormat:@"%@%@", self.URLHeader, self.AVTransport.eventSubURL];
+            }else{
+                url = [NSString stringWithFormat:@"%@/%@", self.URLHeader, self.AVTransport.eventSubURL];
+            }
+        }
+    }else if (serverType == ServerTypeRenderingControl){
+        if(self.RenderingControl != nil){
+            if ([[self.RenderingControl.controlURL substringToIndex:1] isEqualToString:@"/"]){
+                url = [NSString stringWithFormat:@"%@%@", self.URLHeader, self.RenderingControl.eventSubURL];
+            }else{
+                url = [NSString stringWithFormat:@"%@/%@", self.URLHeader, self.RenderingControl.eventSubURL];
+            }
+        }
+    }
+    return url;
+}
+
 - (NSString *)description{
     NSString * string = [NSString stringWithFormat:@"\nuuid:%@\nlocation:%@\nURLHeader:%@\nfriendlyName:%@\nmodelName:%@\n",self.uuid,self.loaction,self.URLHeader,self.friendlyName,self.modelName];
     return string;

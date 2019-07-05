@@ -7,8 +7,8 @@
 
 #import "MRDLNA.h"
 #import "StopAction.h"
-
-
+#import "GCDWebServer.h"
+#import "GDataXMLNode.h"
 
 @interface MRDLNA()<CLUPnPServerDelegate, CLUPnPResponseDelegate>
 
@@ -16,6 +16,9 @@
 @property(nonatomic,strong) NSMutableArray *dataArray;
 
 @property(nonatomic,strong) CLUPnPRenderer *render;         //MDR渲染器
+
+@property (nonatomic,strong)GCDWebServer *webServer;
+
 @property(nonatomic,copy) NSString *volume;
 @property(nonatomic,assign) NSInteger seekTime;
 @property(nonatomic,assign) BOOL isPlaying;
@@ -192,6 +195,76 @@ static dispatch_once_t once;
     self.playUrl = url;
     [self.render setAVTransportURL:url];
 }
+- (void)setNextAVTransportURIStr:(NSString *)uriStr{
+    if(self.render == nil)return;
+    [self.render setNextAVTransportURI:uriStr];
+}
+
+- (void)sendSubcirbeWithTime:(int)time callBack:(NSString*)callBack serverType:(LEUpnpServerType)serverType result:(void(^)(BOOL success))result;
+{
+    if(self.render == nil)return;
+    [self.render sendSubscribeRequestWithTime:time serverType:serverType callBack:callBack result:result];
+    [self startWebServer];
+}
+
+- (void)contractSubscirbeWithTime:(int)time serverType:(LEUpnpServerType)serverType result:(void(^)(BOOL success))result
+{
+    if(self.render == nil)return;
+    [self.render contractSubscirbeWithTime:time serverType:serverType result:result];
+    
+}
+
+- (void)removeSubscirbeWithServerType:(LEUpnpServerType)serverType result:(void(^)(BOOL success))result
+{
+    if(self.render == nil)return;
+    [self.render removeSubscribeWithServerType:serverType result:result];
+}
+
+
+#pragma mark -  启动web服务
+- (void)startWebServer
+{
+    if(!self.webServer){
+        self.webServer = [[GCDWebServer alloc]init];
+        __weak typeof(self)weakSelf = self;
+        [self.webServer addHandlerForMethod:@"NOTOFY" pathRegex:@"dlna/callback" requestClass:[GCDWebServerRequest class] asyncProcessBlock:^(__kindof GCDWebServerRequest * _Nonnull request, GCDWebServerCompletionBlock  _Nonnull completionBlock) {
+            
+            NSLog(@"webServer 回调");
+            
+            if(request.hasBody){
+                if(request.remoteAddressData){
+                    [weakSelf parseWebServerMessage:request.remoteAddressData];
+                }
+            }
+        }];
+        [self.webServer startWithPort:8899 bonjourName:nil];
+        
+        NSLog(@"self.webServer.serverURL --- %@",self.webServer.serverURL);
+        
+    }
+}
+#pragma mark - webServer 回调处理
+- (void)parseWebServerMessage:(NSData*)data
+{
+    // 这里有个坑，有些设备返回的xml中<>被转义，导致解析时候出错。所以需要先反转义，然后再解析。
+    NSString *string = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    string = [self retransfer:string];
+    NSData *xmlData = [string dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    GDataXMLDocument *document = [[GDataXMLDocument alloc]initWithData:xmlData options:0 error:&error];
+    if(document){
+        
+    }
+    
+}
+////有些设备返回的xml中 < > 被转义，导致解析时候出错。所以需要先反转义，然后再解析。
+- (NSString*)retransfer:(NSString*)string
+{
+    if(string == nil)return nil;
+    NSString*result = [string stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"];
+    result = [result stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
+    return result;
+}
 
 #pragma mark -- 搜索协议CLUPnPDeviceDelegate回调
 - (void)upnpSearchChangeWithResults:(NSArray<CLUPnPDevice *> *)devices{
@@ -238,8 +311,6 @@ static dispatch_once_t once;
     }
 }
 #pragma mark - 获取视频现在的播放进度的回调(里面有播放的总时间）
-
-
 
 - (void)upnpGetPositionInfoResponse:(CLUPnPAVPositionInfo *)info{
     
