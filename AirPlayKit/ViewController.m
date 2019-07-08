@@ -215,13 +215,8 @@
             [wSelf.dlnaManager dlnaPlay];
             [wSelf.dlnaManager seekChanged:CMTimeGetSeconds(self.avPlayer.currentItem.currentTime)];
             
-            [self.dlnaManager sendSubcirbeWithTime:600 callBack:@"http://10.58.112.44:8899/dlna/callback" serverType:ServerTypeRenderingControl result:^(BOOL success) {
-                if (success) {
-                    NSLog(@"订阅服务 ok");
-                }else{
-                    NSLog(@"订阅服务 no");
-                }
-            }];
+            [wSelf.dlnaManager startWebServer];
+            
             self.currentrender.text = [NSString stringWithFormat:@"%@(DLNA)",device.friendlyName];
             
         }];

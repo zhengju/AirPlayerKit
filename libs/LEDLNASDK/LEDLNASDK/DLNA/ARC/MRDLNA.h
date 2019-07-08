@@ -188,4 +188,9 @@
  */
 - (void)removeSubscirbeWithServerType:(LEUpnpServerType)serverType result:(void(^)(BOOL success))result;
 
+/**
+ 开启服务器，监听订阅服务的回调
+ */
+- (void)startWebServer;
+
 @end

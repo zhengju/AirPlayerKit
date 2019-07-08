@@ -48,6 +48,9 @@
                     GDataXMLElement *listEle = [serviceListArray objectAtIndex:k];
                     if ([listEle.name isEqualToString:@"service"]) {
                         NSString *serviceString = [listEle stringValue];
+                        
+                        NSLog(@"serviceString  is %@",serviceString);
+                        
                         if ([serviceString rangeOfString:serviceType_AVTransport].location != NSNotFound || [serviceString rangeOfString:serviceId_AVTransport].location != NSNotFound) {
                             
                             [self.AVTransport setArray:[listEle children]];

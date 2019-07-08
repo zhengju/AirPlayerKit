@@ -9,8 +9,8 @@
 #import "StopAction.h"
 #import "GCDWebServer.h"
 #import "GDataXMLNode.h"
-
-@interface MRDLNA()<CLUPnPServerDelegate, CLUPnPResponseDelegate>
+#import "GCDWebServerDataResponse.h"
+@interface MRDLNA()<CLUPnPServerDelegate, CLUPnPResponseDelegate,GCDWebServerDelegate>
 
 @property(nonatomic,strong) CLUPnPServer *upd;              //MDS服务器
 @property(nonatomic,strong) NSMutableArray *dataArray;
@@ -204,7 +204,7 @@ static dispatch_once_t once;
 {
     if(self.render == nil)return;
     [self.render sendSubscribeRequestWithTime:time serverType:serverType callBack:callBack result:result];
-    [self startWebServer];
+    
 }
 
 - (void)contractSubscirbeWithTime:(int)time serverType:(LEUpnpServerType)serverType result:(void(^)(BOOL success))result
@@ -226,8 +226,9 @@ static dispatch_once_t once;
 {
     if(!self.webServer){
         self.webServer = [[GCDWebServer alloc]init];
+        self.webServer.delegate = self;
         __weak typeof(self)weakSelf = self;
-        [self.webServer addHandlerForMethod:@"NOTOFY" pathRegex:@"dlna/callback" requestClass:[GCDWebServerRequest class] asyncProcessBlock:^(__kindof GCDWebServerRequest * _Nonnull request, GCDWebServerCompletionBlock  _Nonnull completionBlock) {
+        [self.webServer addHandlerForMethod:@"NOTIFY" pathRegex:@"/dlna/callback" requestClass:[GCDWebServerRequest class] asyncProcessBlock:^(__kindof GCDWebServerRequest * _Nonnull request, GCDWebServerCompletionBlock  _Nonnull completionBlock) {
             
             NSLog(@"webServer 回调");
             
@@ -237,17 +238,52 @@ static dispatch_once_t once;
                 }
             }
         }];
-        [self.webServer startWithPort:8899 bonjourName:nil];
         
-        NSLog(@"self.webServer.serverURL --- %@",self.webServer.serverURL);
+        [self.webServer addHandlerForMethod:@"GET"
+                                  path:@"/dlna/callback"
+                          requestClass:[GCDWebServerRequest class]
+                          processBlock:^GCDWebServerResponse*(GCDWebServerRequest* request) {
+
+                              NSString* html = @" \
+                              <html><body> \
+                              <form name=\"input\" action=\"/\" method=\"post\" enctype=\"application/x-www-form-urlencoded\"> \
+                              Value: <input type=\"text\" name=\"value\"> \
+                              <input type=\"submit\" value=\"Submit\"> \
+                              </form> \
+                              </body></html> \
+                              ";
+                              return [GCDWebServerDataResponse responseWithHTML:html];
+                          }];
         
+        [self.webServer startWithPort:8080 bonjourName:nil];
+
+        NSString * callBack = [NSString stringWithFormat:@"%@dlna/callback",self.webServer.serverURL];//或取IP和端口
+        
+        [self sendSubcirbeWithTime:3600 callBack:callBack serverType:ServerTypeAVTransport result:^(BOOL success) {
+            if (success) {
+                NSLog(@"订阅服务 ok");
+            }else{
+                NSLog(@"订阅服务 no");
+            }
+        }];
+        [self sendSubcirbeWithTime:3600 callBack:callBack serverType:ServerTypeRenderingControl result:^(BOOL success) {
+            if (success) {
+                NSLog(@"订阅服务  ok");
+            }else{
+                NSLog(@"订阅服务 no");
+            }
+        }];
     }
 }
+
 #pragma mark - webServer 回调处理
 - (void)parseWebServerMessage:(NSData*)data
 {
     // 这里有个坑，有些设备返回的xml中<>被转义，导致解析时候出错。所以需要先反转义，然后再解析。
     NSString *string = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"string is %@",string);
+    
     string = [self retransfer:string];
     NSData *xmlData = [string dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error;
@@ -261,6 +297,9 @@ static dispatch_once_t once;
 - (NSString*)retransfer:(NSString*)string
 {
     if(string == nil)return nil;
+    
+    NSLog(@"设备返回的xml中 < > 被转义 %@",string);
+    
     NSString*result = [string stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"];
     result = [result stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
     return result;
@@ -322,6 +361,8 @@ static dispatch_once_t once;
         
         numCount++;
         
+        NSLog(@"超时记录 %d",numCount);
+        
         [self.render getTransportInfo];
         
         if (numCount > 5) {
@@ -370,4 +411,8 @@ static dispatch_once_t once;
     once = 0;
     instance = nil;
 }
+
+#pragma mark - GCDWebServerDelegate
+
+
 @end
