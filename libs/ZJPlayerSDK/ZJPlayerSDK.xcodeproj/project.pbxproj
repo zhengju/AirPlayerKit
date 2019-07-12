@@ -1,0 +1,566 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		188D657D2258AEE000935141 /* ZJPlayerControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 188D657C2258AEE000935141 /* ZJPlayerControl.m */; };
+		7A1A3CEF223F99C0001E2994 /* ZJPlayerProtocol.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7A1A3CEE223F9840001E2994 /* ZJPlayerProtocol.h */; };
+		7A701EC722D87D5C00E4EEC1 /* libZJHttpDownload.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A701EC622D87D5C00E4EEC1 /* libZJHttpDownload.a */; };
+		7A701EC822D87E0C00E4EEC1 /* ZJPlayerSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7A72139E223B491800B7C02E /* ZJPlayerSDK.h */; };
+		7A701ED522D87FF700E4EEC1 /* libZJToolsSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A701ECE22D87FAE00E4EEC1 /* libZJToolsSDK.a */; };
+		7A701ED622D880B500E4EEC1 /* ZJJPlayer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7ACF4CF2224A12C0001B0EB4 /* ZJJPlayer.h */; };
+		7A701ED722D880B500E4EEC1 /* ZJPlayerControl.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 188D657B2258AEE000935141 /* ZJPlayerControl.h */; };
+		7A701ED822D880B500E4EEC1 /* ZJVideoPlayerView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7A7213C2223B498C00B7C02E /* ZJVideoPlayerView.h */; };
+		7A701ED922D880B500E4EEC1 /* ZJControlView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7A7213C4223B498C00B7C02E /* ZJControlView.h */; };
+		7A701EDA22D880B500E4EEC1 /* ZJPlayerController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7A7213C0223B498C00B7C02E /* ZJPlayerController.h */; };
+		7A701EDB22D880B500E4EEC1 /* ZJLoadingIndicator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7A7213DD223B598800B7C02E /* ZJLoadingIndicator.h */; };
+		7A7213C7223B498C00B7C02E /* ZJVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7213BC223B498C00B7C02E /* ZJVideoPlayerView.m */; };
+		7A7213C8223B498C00B7C02E /* ZJProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7213BD223B498C00B7C02E /* ZJProgress.m */; };
+		7A7213C9223B498C00B7C02E /* ZJTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7213BE223B498C00B7C02E /* ZJTopView.m */; };
+		7A7213CA223B498C00B7C02E /* ZJControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7213BF223B498C00B7C02E /* ZJControlView.m */; };
+		7A7213CB223B498C00B7C02E /* ZJBrightness.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7213C3223B498C00B7C02E /* ZJBrightness.m */; };
+		7A7213CC223B498C00B7C02E /* ZJPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7213C6223B498C00B7C02E /* ZJPlayerController.m */; };
+		7A7213DF223B598800B7C02E /* ZJLoadingIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7213DE223B598800B7C02E /* ZJLoadingIndicator.m */; };
+		7A7213E2223B5A2200B7C02E /* ZJResourceLoaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7213E1223B5A2200B7C02E /* ZJResourceLoaderManager.m */; };
+		7A7213E8223B725F00B7C02E /* UIView+Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7213E7223B725F00B7C02E /* UIView+Player.m */; };
+		7ACF4CF4224A12C0001B0EB4 /* ZJJPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF4CF3224A12C0001B0EB4 /* ZJJPlayer.m */; };
+		7AED2A0C225D84780032C675 /* VIResourceLoadingRequestWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AED29FF225D84770032C675 /* VIResourceLoadingRequestWorker.m */; };
+		7AED2A0D225D84780032C675 /* VIMediaDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AED2A03225D84770032C675 /* VIMediaDownloader.m */; };
+		7AED2A0E225D84780032C675 /* VIResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AED2A05225D84780032C675 /* VIResourceLoader.m */; };
+		7AED2A0F225D84780032C675 /* VIResourceLoaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AED2A06225D84780032C675 /* VIResourceLoaderManager.m */; };
+		7AED2A10225D84780032C675 /* VIContentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AED2A07225D84780032C675 /* VIContentInfo.m */; };
+		7AED2A1E225D84B10032C675 /* VIMediaCacheWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AED2A12225D84B00032C675 /* VIMediaCacheWorker.m */; };
+		7AED2A1F225D84B10032C675 /* VICacheAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AED2A15225D84B00032C675 /* VICacheAction.m */; };
+		7AED2A20225D84B10032C675 /* VICacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AED2A17225D84B00032C675 /* VICacheManager.m */; };
+		7AED2A21225D84B10032C675 /* NSString+VIMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AED2A19225D84B10032C675 /* NSString+VIMD5.m */; };
+		7AED2A22225D84B10032C675 /* VICacheConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AED2A1A225D84B10032C675 /* VICacheConfiguration.m */; };
+		7AED2A23225D84B10032C675 /* VICacheSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AED2A1B225D84B10032C675 /* VICacheSessionManager.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7A701ECD22D87FAE00E4EEC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A701EC922D87FAE00E4EEC1 /* ZJToolsSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7A7213FA223B764D00B7C02E;
+			remoteInfo = ZJToolsSDK;
+		};
+		7A701ED322D87FCA00E4EEC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A701ECF22D87FCA00E4EEC1 /* ZJHttpDownload.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7A72132E223A6A9000B7C02E;
+			remoteInfo = ZJHttpDownload;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7A721399223B491800B7C02E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				7A701ED622D880B500E4EEC1 /* ZJJPlayer.h in CopyFiles */,
+				7A701ED722D880B500E4EEC1 /* ZJPlayerControl.h in CopyFiles */,
+				7A701ED822D880B500E4EEC1 /* ZJVideoPlayerView.h in CopyFiles */,
+				7A701ED922D880B500E4EEC1 /* ZJControlView.h in CopyFiles */,
+				7A701EDA22D880B500E4EEC1 /* ZJPlayerController.h in CopyFiles */,
+				7A701EDB22D880B500E4EEC1 /* ZJLoadingIndicator.h in CopyFiles */,
+				7A701EC822D87E0C00E4EEC1 /* ZJPlayerSDK.h in CopyFiles */,
+				7A1A3CEF223F99C0001E2994 /* ZJPlayerProtocol.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		188D657B2258AEE000935141 /* ZJPlayerControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJPlayerControl.h; sourceTree = "<group>"; };
+		188D657C2258AEE000935141 /* ZJPlayerControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJPlayerControl.m; sourceTree = "<group>"; };
+		7A1A3CEE223F9840001E2994 /* ZJPlayerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJPlayerProtocol.h; sourceTree = "<group>"; };
+		7A701EC622D87D5C00E4EEC1 /* libZJHttpDownload.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libZJHttpDownload.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A701EC922D87FAE00E4EEC1 /* ZJToolsSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZJToolsSDK.xcodeproj; path = ../../../../ZJToolsSDK/ZJToolsSDK.xcodeproj; sourceTree = "<group>"; };
+		7A701ECF22D87FCA00E4EEC1 /* ZJHttpDownload.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZJHttpDownload.xcodeproj; path = ../../../../ZJHttpDownload/ZJHttpDownload.xcodeproj; sourceTree = "<group>"; };
+		7A72139B223B491800B7C02E /* libZJPlayerSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libZJPlayerSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A72139E223B491800B7C02E /* ZJPlayerSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJPlayerSDK.h; sourceTree = "<group>"; };
+		7A7213BB223B498C00B7C02E /* ZJBrightness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJBrightness.h; sourceTree = "<group>"; };
+		7A7213BC223B498C00B7C02E /* ZJVideoPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJVideoPlayerView.m; sourceTree = "<group>"; };
+		7A7213BD223B498C00B7C02E /* ZJProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJProgress.m; sourceTree = "<group>"; };
+		7A7213BE223B498C00B7C02E /* ZJTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJTopView.m; sourceTree = "<group>"; };
+		7A7213BF223B498C00B7C02E /* ZJControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJControlView.m; sourceTree = "<group>"; };
+		7A7213C0223B498C00B7C02E /* ZJPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJPlayerController.h; sourceTree = "<group>"; };
+		7A7213C1223B498C00B7C02E /* ZJProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJProgress.h; sourceTree = "<group>"; };
+		7A7213C2223B498C00B7C02E /* ZJVideoPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJVideoPlayerView.h; sourceTree = "<group>"; };
+		7A7213C3223B498C00B7C02E /* ZJBrightness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJBrightness.m; sourceTree = "<group>"; };
+		7A7213C4223B498C00B7C02E /* ZJControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJControlView.h; sourceTree = "<group>"; };
+		7A7213C5223B498C00B7C02E /* ZJTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJTopView.h; sourceTree = "<group>"; };
+		7A7213C6223B498C00B7C02E /* ZJPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJPlayerController.m; sourceTree = "<group>"; };
+		7A7213DD223B598800B7C02E /* ZJLoadingIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZJLoadingIndicator.h; path = ZJPlayerSDK/ZJLoadingIndicator.h; sourceTree = SOURCE_ROOT; };
+		7A7213DE223B598800B7C02E /* ZJLoadingIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZJLoadingIndicator.m; path = ZJPlayerSDK/ZJLoadingIndicator.m; sourceTree = SOURCE_ROOT; };
+		7A7213E0223B5A2100B7C02E /* ZJResourceLoaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZJResourceLoaderManager.h; path = ZJPlayerSDK/Player/ResourceLoader/ZJResourceLoaderManager.h; sourceTree = SOURCE_ROOT; };
+		7A7213E1223B5A2200B7C02E /* ZJResourceLoaderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZJResourceLoaderManager.m; path = ZJPlayerSDK/Player/ResourceLoader/ZJResourceLoaderManager.m; sourceTree = SOURCE_ROOT; };
+		7A7213E6223B725E00B7C02E /* UIView+Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Player.h"; path = "ZJPlayerSDK/UIView+Player.h"; sourceTree = SOURCE_ROOT; };
+		7A7213E7223B725F00B7C02E /* UIView+Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Player.m"; path = "ZJPlayerSDK/UIView+Player.m"; sourceTree = SOURCE_ROOT; };
+		7ACF4CF2224A12C0001B0EB4 /* ZJJPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJJPlayer.h; sourceTree = "<group>"; };
+		7ACF4CF3224A12C0001B0EB4 /* ZJJPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJJPlayer.m; sourceTree = "<group>"; };
+		7AED29FF225D84770032C675 /* VIResourceLoadingRequestWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIResourceLoadingRequestWorker.m; sourceTree = "<group>"; };
+		7AED2A03225D84770032C675 /* VIMediaDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMediaDownloader.m; sourceTree = "<group>"; };
+		7AED2A04225D84770032C675 /* VIMediaDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMediaDownloader.h; sourceTree = "<group>"; };
+		7AED2A05225D84780032C675 /* VIResourceLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIResourceLoader.m; sourceTree = "<group>"; };
+		7AED2A06225D84780032C675 /* VIResourceLoaderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIResourceLoaderManager.m; sourceTree = "<group>"; };
+		7AED2A07225D84780032C675 /* VIContentInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIContentInfo.m; sourceTree = "<group>"; };
+		7AED2A08225D84780032C675 /* VIResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIResourceLoader.h; sourceTree = "<group>"; };
+		7AED2A09225D84780032C675 /* VIResourceLoaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIResourceLoaderManager.h; sourceTree = "<group>"; };
+		7AED2A0A225D84780032C675 /* VIResourceLoadingRequestWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIResourceLoadingRequestWorker.h; sourceTree = "<group>"; };
+		7AED2A0B225D84780032C675 /* VIContentInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIContentInfo.h; sourceTree = "<group>"; };
+		7AED2A12225D84B00032C675 /* VIMediaCacheWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMediaCacheWorker.m; sourceTree = "<group>"; };
+		7AED2A13225D84B00032C675 /* VICacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VICacheManager.h; sourceTree = "<group>"; };
+		7AED2A14225D84B00032C675 /* VIMediaCacheWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMediaCacheWorker.h; sourceTree = "<group>"; };
+		7AED2A15225D84B00032C675 /* VICacheAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VICacheAction.m; sourceTree = "<group>"; };
+		7AED2A16225D84B00032C675 /* VICacheConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VICacheConfiguration.h; sourceTree = "<group>"; };
+		7AED2A17225D84B00032C675 /* VICacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VICacheManager.m; sourceTree = "<group>"; };
+		7AED2A18225D84B10032C675 /* VICacheSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VICacheSessionManager.h; sourceTree = "<group>"; };
+		7AED2A19225D84B10032C675 /* NSString+VIMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+VIMD5.m"; sourceTree = "<group>"; };
+		7AED2A1A225D84B10032C675 /* VICacheConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VICacheConfiguration.m; sourceTree = "<group>"; };
+		7AED2A1B225D84B10032C675 /* VICacheSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VICacheSessionManager.m; sourceTree = "<group>"; };
+		7AED2A1C225D84B10032C675 /* VICacheAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VICacheAction.h; sourceTree = "<group>"; };
+		7AED2A1D225D84B10032C675 /* NSString+VIMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+VIMD5.h"; sourceTree = "<group>"; };
+		7AED2A24225D84DD0032C675 /* VIMediaCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMediaCache.h; sourceTree = "<group>"; };
+		7AEF926D2249C55400D32B19 /* libZJToolsSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libZJToolsSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7A721398223B491800B7C02E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A701ED522D87FF700E4EEC1 /* libZJToolsSDK.a in Frameworks */,
+				7A701EC722D87D5C00E4EEC1 /* libZJHttpDownload.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7A42D5F722544A9300BE1690 /* ResourceLoader */ = {
+			isa = PBXGroup;
+			children = (
+				7AED2A11225D849D0032C675 /* Cache */,
+				7AED2A0B225D84780032C675 /* VIContentInfo.h */,
+				7AED2A07225D84780032C675 /* VIContentInfo.m */,
+				7AED2A04225D84770032C675 /* VIMediaDownloader.h */,
+				7AED2A03225D84770032C675 /* VIMediaDownloader.m */,
+				7AED2A08225D84780032C675 /* VIResourceLoader.h */,
+				7AED2A05225D84780032C675 /* VIResourceLoader.m */,
+				7AED2A09225D84780032C675 /* VIResourceLoaderManager.h */,
+				7AED2A06225D84780032C675 /* VIResourceLoaderManager.m */,
+				7AED2A0A225D84780032C675 /* VIResourceLoadingRequestWorker.h */,
+				7AED29FF225D84770032C675 /* VIResourceLoadingRequestWorker.m */,
+				7A7213E0223B5A2100B7C02E /* ZJResourceLoaderManager.h */,
+				7A7213E1223B5A2200B7C02E /* ZJResourceLoaderManager.m */,
+			);
+			path = ResourceLoader;
+			sourceTree = "<group>";
+		};
+		7A701ECA22D87FAE00E4EEC1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7A701ECE22D87FAE00E4EEC1 /* libZJToolsSDK.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7A701ED022D87FCA00E4EEC1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7A701ED422D87FCA00E4EEC1 /* libZJHttpDownload.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7A721392223B491800B7C02E = {
+			isa = PBXGroup;
+			children = (
+				7A72139D223B491800B7C02E /* ZJPlayerSDK */,
+				7A72139C223B491800B7C02E /* Products */,
+				7AEF926C2249C55400D32B19 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7A72139C223B491800B7C02E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7A72139B223B491800B7C02E /* libZJPlayerSDK.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7A72139D223B491800B7C02E /* ZJPlayerSDK */ = {
+			isa = PBXGroup;
+			children = (
+				7A7213BA223B498C00B7C02E /* Player */,
+				7A72139E223B491800B7C02E /* ZJPlayerSDK.h */,
+				7AED2A24225D84DD0032C675 /* VIMediaCache.h */,
+			);
+			path = ZJPlayerSDK;
+			sourceTree = "<group>";
+		};
+		7A7213BA223B498C00B7C02E /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				7AF3A906225227E8007901B5 /* libs */,
+				7ACF4CF2224A12C0001B0EB4 /* ZJJPlayer.h */,
+				7ACF4CF3224A12C0001B0EB4 /* ZJJPlayer.m */,
+				188D657B2258AEE000935141 /* ZJPlayerControl.h */,
+				188D657C2258AEE000935141 /* ZJPlayerControl.m */,
+				7A7213C2223B498C00B7C02E /* ZJVideoPlayerView.h */,
+				7A7213BC223B498C00B7C02E /* ZJVideoPlayerView.m */,
+				7A7213E6223B725E00B7C02E /* UIView+Player.h */,
+				7A7213E7223B725F00B7C02E /* UIView+Player.m */,
+				7A7213C1223B498C00B7C02E /* ZJProgress.h */,
+				7A7213BD223B498C00B7C02E /* ZJProgress.m */,
+				7A7213C5223B498C00B7C02E /* ZJTopView.h */,
+				7A7213BE223B498C00B7C02E /* ZJTopView.m */,
+				7A7213C4223B498C00B7C02E /* ZJControlView.h */,
+				7A7213BF223B498C00B7C02E /* ZJControlView.m */,
+				7A7213BB223B498C00B7C02E /* ZJBrightness.h */,
+				7A7213C3223B498C00B7C02E /* ZJBrightness.m */,
+				7A7213C0223B498C00B7C02E /* ZJPlayerController.h */,
+				7A7213C6223B498C00B7C02E /* ZJPlayerController.m */,
+				7A7213DD223B598800B7C02E /* ZJLoadingIndicator.h */,
+				7A7213DE223B598800B7C02E /* ZJLoadingIndicator.m */,
+				7A42D5F722544A9300BE1690 /* ResourceLoader */,
+				7A1A3CEE223F9840001E2994 /* ZJPlayerProtocol.h */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		7AED2A11225D849D0032C675 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				7AED2A1D225D84B10032C675 /* NSString+VIMD5.h */,
+				7AED2A19225D84B10032C675 /* NSString+VIMD5.m */,
+				7AED2A1C225D84B10032C675 /* VICacheAction.h */,
+				7AED2A15225D84B00032C675 /* VICacheAction.m */,
+				7AED2A16225D84B00032C675 /* VICacheConfiguration.h */,
+				7AED2A1A225D84B10032C675 /* VICacheConfiguration.m */,
+				7AED2A13225D84B00032C675 /* VICacheManager.h */,
+				7AED2A17225D84B00032C675 /* VICacheManager.m */,
+				7AED2A18225D84B10032C675 /* VICacheSessionManager.h */,
+				7AED2A1B225D84B10032C675 /* VICacheSessionManager.m */,
+				7AED2A14225D84B00032C675 /* VIMediaCacheWorker.h */,
+				7AED2A12225D84B00032C675 /* VIMediaCacheWorker.m */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		7AEF926C2249C55400D32B19 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7A701EC622D87D5C00E4EEC1 /* libZJHttpDownload.a */,
+				7AEF926D2249C55400D32B19 /* libZJToolsSDK.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7AF3A906225227E8007901B5 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				7A701ECF22D87FCA00E4EEC1 /* ZJHttpDownload.xcodeproj */,
+				7A701EC922D87FAE00E4EEC1 /* ZJToolsSDK.xcodeproj */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7A72139A223B491800B7C02E /* ZJPlayerSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7A7213A4223B491800B7C02E /* Build configuration list for PBXNativeTarget "ZJPlayerSDK" */;
+			buildPhases = (
+				7A721397223B491800B7C02E /* Sources */,
+				7A721398223B491800B7C02E /* Frameworks */,
+				7A721399223B491800B7C02E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZJPlayerSDK;
+			productName = ZJPlayerSDK;
+			productReference = 7A72139B223B491800B7C02E /* libZJPlayerSDK.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7A721393223B491800B7C02E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = zsw;
+				TargetAttributes = {
+					7A72139A223B491800B7C02E = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 7A721396223B491800B7C02E /* Build configuration list for PBXProject "ZJPlayerSDK" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7A721392223B491800B7C02E;
+			productRefGroup = 7A72139C223B491800B7C02E /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7A701ED022D87FCA00E4EEC1 /* Products */;
+					ProjectRef = 7A701ECF22D87FCA00E4EEC1 /* ZJHttpDownload.xcodeproj */;
+				},
+				{
+					ProductGroup = 7A701ECA22D87FAE00E4EEC1 /* Products */;
+					ProjectRef = 7A701EC922D87FAE00E4EEC1 /* ZJToolsSDK.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				7A72139A223B491800B7C02E /* ZJPlayerSDK */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		7A701ECE22D87FAE00E4EEC1 /* libZJToolsSDK.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libZJToolsSDK.a;
+			remoteRef = 7A701ECD22D87FAE00E4EEC1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7A701ED422D87FCA00E4EEC1 /* libZJHttpDownload.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libZJHttpDownload.a;
+			remoteRef = 7A701ED322D87FCA00E4EEC1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7A721397223B491800B7C02E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7AED2A10225D84780032C675 /* VIContentInfo.m in Sources */,
+				7A7213E2223B5A2200B7C02E /* ZJResourceLoaderManager.m in Sources */,
+				7A7213CB223B498C00B7C02E /* ZJBrightness.m in Sources */,
+				7AED2A1F225D84B10032C675 /* VICacheAction.m in Sources */,
+				7AED2A22225D84B10032C675 /* VICacheConfiguration.m in Sources */,
+				7A7213CC223B498C00B7C02E /* ZJPlayerController.m in Sources */,
+				7AED2A0F225D84780032C675 /* VIResourceLoaderManager.m in Sources */,
+				188D657D2258AEE000935141 /* ZJPlayerControl.m in Sources */,
+				7A7213C9223B498C00B7C02E /* ZJTopView.m in Sources */,
+				7AED2A20225D84B10032C675 /* VICacheManager.m in Sources */,
+				7ACF4CF4224A12C0001B0EB4 /* ZJJPlayer.m in Sources */,
+				7A7213E8223B725F00B7C02E /* UIView+Player.m in Sources */,
+				7AED2A21225D84B10032C675 /* NSString+VIMD5.m in Sources */,
+				7A7213C8223B498C00B7C02E /* ZJProgress.m in Sources */,
+				7A7213CA223B498C00B7C02E /* ZJControlView.m in Sources */,
+				7AED2A0D225D84780032C675 /* VIMediaDownloader.m in Sources */,
+				7A7213DF223B598800B7C02E /* ZJLoadingIndicator.m in Sources */,
+				7AED2A0E225D84780032C675 /* VIResourceLoader.m in Sources */,
+				7AED2A1E225D84B10032C675 /* VIMediaCacheWorker.m in Sources */,
+				7AED2A0C225D84780032C675 /* VIResourceLoadingRequestWorker.m in Sources */,
+				7AED2A23225D84B10032C675 /* VICacheSessionManager.m in Sources */,
+				7A7213C7223B498C00B7C02E /* ZJVideoPlayerView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		7A7213A2223B491800B7C02E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7A7213A3223B491800B7C02E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7A7213A5223B491800B7C02E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../ZJToolsSDK/ZJToolsSDK\"/**",
+					"\"$(SRCROOT)/../ZJHttpDownload/ZJHttpDownload\"/**",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7A7213A6223B491800B7C02E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../ZJToolsSDK/ZJToolsSDK\"/**",
+					"\"$(SRCROOT)/../ZJHttpDownload/ZJHttpDownload\"/**",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7A721396223B491800B7C02E /* Build configuration list for PBXProject "ZJPlayerSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A7213A2223B491800B7C02E /* Debug */,
+				7A7213A3223B491800B7C02E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7A7213A4223B491800B7C02E /* Build configuration list for PBXNativeTarget "ZJPlayerSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A7213A5223B491800B7C02E /* Debug */,
+				7A7213A6223B491800B7C02E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7A721393223B491800B7C02E /* Project object */;
+}

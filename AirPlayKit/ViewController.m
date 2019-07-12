@@ -14,14 +14,18 @@
 
 #import <LEDLNASDK/MRDLNA.h>
 
+#import <ZJPlayerSDK/ZJPlayerSDK.h>
+
 @interface ViewController ()<DLNADelegate>
 {
     BOOL _isPlaying;
     BOOL _airPlay;//是否是airplay
 }
-@property(nonatomic,strong) AVPlayer        * avPlayer;
-@property(nonatomic,strong) AVPlayerItem    * playerItem;
-@property(nonatomic,strong) AVPlayerLayer   * playerLayer;
+
+@property(nonatomic, strong) ZJVideoPlayerView * player;
+
+@property(nonatomic, strong) UIView * dlnaPlayBgView;
+
 /** 音量View*/
 @property(nonatomic,strong) MPVolumeView     * volumeView;
 @property(nonatomic,strong) UIButton     * mpButton;
@@ -49,6 +53,9 @@
     [super viewDidAppear:animated];
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     [self becomeFirstResponder];
+    
+    
+    
 }
 - (void) viewWillDisappear: (BOOL) animated {
     [super viewWillDisappear:animated];
@@ -75,6 +82,7 @@
     [self initPlayer];
     
     [self sendTestRequest];
+    
 }
 
 - (void)remoteControlReceivedWithEvent:(UIEvent *)event{
@@ -112,7 +120,7 @@
     if (_airPlay) {
         
         CMTime time = CMTimeMake(sender.value*self.totalTime, 1);
-        [self.avPlayer seekToTime:time toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero completionHandler:^(BOOL finished) {
+        [self.player.player seekToTime:time toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero completionHandler:^(BOOL finished) {
         }];
         
     }else{
@@ -132,9 +140,10 @@
     }else{//dlna
         [self.dlnaManager endDLNA];
         [self.dlnaManager close];
+        self.dlnaPlayBgView.hidden = YES;
         _airPlay = YES;
-        [self.avPlayer seekToTime:CMTimeMake(self.currentTime, 1) completionHandler:^(BOOL finished) {
-            [self.avPlayer play];
+        [self.player.player seekToTime:CMTimeMake(self.currentTime, 1) completionHandler:^(BOOL finished) {
+            [self.player.player play];
         }];
         self.currentrender.text = @"乐播投屏(无)";
     }
@@ -148,15 +157,20 @@
     
     if (_airPlay) {
         
-        self.playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:url]];
-        [self.avPlayer replaceCurrentItemWithPlayerItem:self.playerItem];//切换下一个
-        [self.avPlayer play];
+//        self.playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:url]];
+//        [self.avPlayer replaceCurrentItemWithPlayerItem:self.playerItem];//切换下一个
+//        [self.avPlayer play];
+        
+        [self.player play];
         
     }else{
         
-        self.playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:url]];
-        [self.avPlayer replaceCurrentItemWithPlayerItem:self.playerItem];
-        [self.avPlayer pause];
+//        self.playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:url]];
+//        [self.avPlayer replaceCurrentItemWithPlayerItem:self.playerItem];
+//        [self.avPlayer pause];
+        
+        [self.player pause];
+        
         
         NSString *testVideo = url;
         [self.dlnaManager playTheURL:testVideo];
@@ -176,9 +190,9 @@
         }
     }else{
         if (_isPlaying) {
-            [self.avPlayer play];
+            [self.player play];
         }else{
-            [self.avPlayer pause];
+            [self.player pause];
         }
     }
 
@@ -213,7 +227,7 @@
             wSelf.dlnaManager.playUrl = testUrl;
             [wSelf.dlnaManager startDLNA];
             [wSelf.dlnaManager dlnaPlay];
-            [wSelf.dlnaManager seekChanged:CMTimeGetSeconds(self.avPlayer.currentItem.currentTime)];
+            [wSelf.dlnaManager seekChanged:CMTimeGetSeconds(self.player.playerItem.currentTime)];
             
             [wSelf.dlnaManager startWebServer];
             
@@ -302,19 +316,29 @@
 
 -(void)initPlayer
 {
-    self.playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"]];
-    self.avPlayer = [AVPlayer playerWithPlayerItem:_playerItem];
-
     
-    [self.avPlayer addObserver:self forKeyPath:@"airPlayVideoActive" options:NSKeyValueObservingOptionNew |NSKeyValueObservingOptionOld context:nil];//监控投屏状态
-    self.avPlayer.usesExternalPlaybackWhileExternalScreenIsActive = YES;//指示当外部屏幕模式处于活动状态时，播放机是否应自动切换到外部播放模式
+     NSString * urlStr = @"http://img.house.china.com.cn/voice/hdzxjh.mp4";
+    
+    ZJVideoPlayerView * player = [[ZJVideoPlayerView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.playerView.bounds.size.height) withSuperView:self.playerView controller:nil];
+    [player configurePLayerWithUrl:[NSURL URLWithString:urlStr]];
+    player.isRotatingSmallScreen = YES;
+    
+    [self.playerView addSubview:player];
+    
 
-    self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:_avPlayer];
-    self.playerLayer.frame = self.playerView.bounds;
-    self.playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
-    self.playerLayer.backgroundColor = [UIColor blackColor].CGColor;
-    [self.playerView.layer addSublayer:_playerLayer];
-    [self.avPlayer play];
+//    self.playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"]];
+//    self.avPlayer = [AVPlayer playerWithPlayerItem:_playerItem];
+//
+//
+    [self.player.player addObserver:self forKeyPath:@"airPlayVideoActive" options:NSKeyValueObservingOptionNew |NSKeyValueObservingOptionOld context:nil];//监控投屏状态
+    self.player.player.usesExternalPlaybackWhileExternalScreenIsActive = YES;//指示当外部屏幕模式处于活动状态时，播放机是否应自动切换到外部播放模式
+
+//    self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:_avPlayer];
+//    self.playerLayer.frame = self.playerView.bounds;
+//    self.playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
+//    self.playerLayer.backgroundColor = [UIColor blackColor].CGColor;
+//    [self.playerView.layer addSublayer:_playerLayer];
+//    [self.avPlayer play];
     _isPlaying = YES;
     _airPlay = YES;
     //隐藏自带的按钮
@@ -325,6 +349,13 @@
     [self.view addSubview:_volumeView];
 
     
+    self.dlnaPlayBgView = [[UIView alloc]initWithFrame:self.playerView.bounds];
+    self.dlnaPlayBgView.backgroundColor = [UIColor blackColor];
+    [self.playerView addSubview:self.dlnaPlayBgView];
+    self.dlnaPlayBgView.hidden = YES;
+    
+    
+
     for (UIView *view in [self.volumeView subviews]){
         if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
             self.volumeViewSlider = (UISlider*)view;
@@ -362,15 +393,15 @@
 
 }
 - (void)timeTimer{
-    if (self.avPlayer.rate == 1) {
-        
-        self.totalTime = CMTimeGetSeconds(self.avPlayer.currentItem.duration);
-        
-        self.playSlider.value = CMTimeGetSeconds(self.avPlayer.currentItem.currentTime)/CMTimeGetSeconds(self.avPlayer.currentItem.duration);
-        
-        self.timeInfoLabel.text = [NSString stringWithFormat:@"%@/%@",[self.dlnaManager timeFormatted:CMTimeGetSeconds(self.avPlayer.currentItem.currentTime)],[self.dlnaManager timeFormatted:CMTimeGetSeconds(self.avPlayer.currentItem.duration)]];
-        
-    }
+//    if (self.player.rate == 1) {
+//
+//        self.totalTime = CMTimeGetSeconds(self.avPlayer.currentItem.duration);
+//
+//        self.playSlider.value = CMTimeGetSeconds(self.avPlayer.currentItem.currentTime)/CMTimeGetSeconds(self.avPlayer.currentItem.duration);
+//
+//        self.timeInfoLabel.text = [NSString stringWithFormat:@"%@/%@",[self.dlnaManager timeFormatted:CMTimeGetSeconds(self.avPlayer.currentItem.currentTime)],[self.dlnaManager timeFormatted:CMTimeGetSeconds(self.avPlayer.currentItem.duration)]];
+//
+//    }
     
     if (!self->_airPlay && [self.dlnaManager getIsPlaying]) {
         
@@ -397,12 +428,14 @@
         NSLog(@"%@",airPlayerName);
         if (airPlayerName) {
             _airPlay = YES;
+            self.dlnaPlayBgView.hidden = NO;
             self.currentrender.text = [NSString stringWithFormat:@"%@(AIRPLAY)",airPlayerName];
         }
 
     } else {
         //没有投影或者是 取消了投影
         self.currentrender.text = @"没有投影";
+        self.dlnaPlayBgView.hidden = YES;
     }
     
 }
@@ -450,17 +483,24 @@
 
 - (void)dlnaStartPlay{
     _airPlay = NO;
-    [self.avPlayer pause];
+    [self.player pause];
     [self.dlnaManager getVolume];//获取音量
+    
+    //投屏成功后
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.dlnaPlayBgView.hidden = NO;
+    });
+
 }
 
 - (void)dlnaGetVolumeResponse:(NSString *)volume{
     NSLog(@"volum:%@",volume);
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.voiceLabel.text =  [NSString stringWithFormat:@"%ld",[volume integerValue]/5];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.voiceLabel.text =  [NSString stringWithFormat:@"%ld",[volume integerValue]/5];
 
-        });
+    });
 
 }
 - (void)dlnaGetPositionInfoResponse:(CLUPnPAVPositionInfo *)info{
@@ -479,12 +519,17 @@
     [self.dlnaManager endDLNA];
     [self.dlnaManager close];
     _airPlay = YES;
-    [self.avPlayer seekToTime:CMTimeMake(self.currentTime, 1) completionHandler:^(BOOL finished) {
-        [self.avPlayer play];
+    [self.player.player seekToTime:CMTimeMake(self.currentTime, 1) completionHandler:^(BOOL finished) {
+        [self.player.player play];
     }];
 
         dispatch_async(dispatch_get_main_queue(), ^{
             self.currentrender.text = @"乐播投屏(无)";
         });
+}
+
+
+- (BOOL)shouldAutorotate {
+    return NO;
 }
 @end

@@ -25,6 +25,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>保存至相册</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>

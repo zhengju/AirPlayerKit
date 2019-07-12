@@ -1,0 +1,322 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7A721334223A6A9000B7C02E /* ZJHttpDownload.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7A721331223A6A9000B7C02E /* ZJHttpDownload.h */; };
+		7A721340223A6AC500B7C02E /* ZJDownloaderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A72133D223A6AC500B7C02E /* ZJDownloaderItem.m */; };
+		7A721341223A6AC500B7C02E /* ZJDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A72133E223A6AC500B7C02E /* ZJDownloadOperation.m */; };
+		7A721342223A6AC500B7C02E /* ZJDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A72133F223A6AC500B7C02E /* ZJDownloadManager.m */; };
+		7A721367223B397300B7C02E /* ZJDownloaderItem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7A72133A223A6AC500B7C02E /* ZJDownloaderItem.h */; };
+		7A721368223B397300B7C02E /* ZJDownloadManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7A72133B223A6AC500B7C02E /* ZJDownloadManager.h */; };
+		7A721369223B397300B7C02E /* ZJDownloadOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7A72133C223A6AC500B7C02E /* ZJDownloadOperation.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7A72132C223A6A9000B7C02E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				7A721367223B397300B7C02E /* ZJDownloaderItem.h in CopyFiles */,
+				7A721368223B397300B7C02E /* ZJDownloadManager.h in CopyFiles */,
+				7A721369223B397300B7C02E /* ZJDownloadOperation.h in CopyFiles */,
+				7A721334223A6A9000B7C02E /* ZJHttpDownload.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		7A72132E223A6A9000B7C02E /* libZJHttpDownload.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libZJHttpDownload.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A721331223A6A9000B7C02E /* ZJHttpDownload.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJHttpDownload.h; sourceTree = "<group>"; };
+		7A72133A223A6AC500B7C02E /* ZJDownloaderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJDownloaderItem.h; sourceTree = "<group>"; };
+		7A72133B223A6AC500B7C02E /* ZJDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJDownloadManager.h; sourceTree = "<group>"; };
+		7A72133C223A6AC500B7C02E /* ZJDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJDownloadOperation.h; sourceTree = "<group>"; };
+		7A72133D223A6AC500B7C02E /* ZJDownloaderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJDownloaderItem.m; sourceTree = "<group>"; };
+		7A72133E223A6AC500B7C02E /* ZJDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJDownloadOperation.m; sourceTree = "<group>"; };
+		7A72133F223A6AC500B7C02E /* ZJDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJDownloadManager.m; sourceTree = "<group>"; };
+		7AEF92802249CAA800D32B19 /* libZJToolsSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libZJToolsSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7A72132B223A6A9000B7C02E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7A721325223A6A9000B7C02E = {
+			isa = PBXGroup;
+			children = (
+				7A721330223A6A9000B7C02E /* ZJHttpDownload */,
+				7A72132F223A6A9000B7C02E /* Products */,
+				7AEF927F2249CAA800D32B19 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7A72132F223A6A9000B7C02E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7A72132E223A6A9000B7C02E /* libZJHttpDownload.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7A721330223A6A9000B7C02E /* ZJHttpDownload */ = {
+			isa = PBXGroup;
+			children = (
+				7A721331223A6A9000B7C02E /* ZJHttpDownload.h */,
+				7A72133B223A6AC500B7C02E /* ZJDownloadManager.h */,
+				7A72133F223A6AC500B7C02E /* ZJDownloadManager.m */,
+				7A72133C223A6AC500B7C02E /* ZJDownloadOperation.h */,
+				7A72133E223A6AC500B7C02E /* ZJDownloadOperation.m */,
+				7A72133A223A6AC500B7C02E /* ZJDownloaderItem.h */,
+				7A72133D223A6AC500B7C02E /* ZJDownloaderItem.m */,
+			);
+			path = ZJHttpDownload;
+			sourceTree = "<group>";
+		};
+		7AEF927F2249CAA800D32B19 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7AEF92802249CAA800D32B19 /* libZJToolsSDK.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7A72132D223A6A9000B7C02E /* ZJHttpDownload */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7A721337223A6A9000B7C02E /* Build configuration list for PBXNativeTarget "ZJHttpDownload" */;
+			buildPhases = (
+				7A72132A223A6A9000B7C02E /* Sources */,
+				7A72132B223A6A9000B7C02E /* Frameworks */,
+				7A72132C223A6A9000B7C02E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZJHttpDownload;
+			productName = ZJHttpDownload;
+			productReference = 7A72132E223A6A9000B7C02E /* libZJHttpDownload.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7A721326223A6A9000B7C02E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = zsw;
+				TargetAttributes = {
+					7A72132D223A6A9000B7C02E = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 7A721329223A6A9000B7C02E /* Build configuration list for PBXProject "ZJHttpDownload" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7A721325223A6A9000B7C02E;
+			productRefGroup = 7A72132F223A6A9000B7C02E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7A72132D223A6A9000B7C02E /* ZJHttpDownload */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7A72132A223A6A9000B7C02E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A721342223A6AC500B7C02E /* ZJDownloadManager.m in Sources */,
+				7A721340223A6AC500B7C02E /* ZJDownloaderItem.m in Sources */,
+				7A721341223A6AC500B7C02E /* ZJDownloadOperation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		7A721335223A6A9000B7C02E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7A721336223A6A9000B7C02E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7A721338223A6A9000B7C02E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../ZJToolsSDK/ZJToolsSDK\"/**";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7A721339223A6A9000B7C02E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../ZJToolsSDK/ZJToolsSDK\"/**";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7A721329223A6A9000B7C02E /* Build configuration list for PBXProject "ZJHttpDownload" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A721335223A6A9000B7C02E /* Debug */,
+				7A721336223A6A9000B7C02E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7A721337223A6A9000B7C02E /* Build configuration list for PBXNativeTarget "ZJHttpDownload" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A721338223A6A9000B7C02E /* Debug */,
+				7A721339223A6A9000B7C02E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7A721326223A6A9000B7C02E /* Project object */;
+}

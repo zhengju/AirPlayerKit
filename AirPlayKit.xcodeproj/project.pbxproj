@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A701EAF22D87B8100E4EEC1 /* libZJPlayerSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A701EAE22D87B5F00E4EEC1 /* libZJPlayerSDK.a */; };
+		7A701EF322D890AD00E4EEC1 /* ZJPlayerSource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A701EF222D890AD00E4EEC1 /* ZJPlayerSource.bundle */; };
 		7A97C10E22CEFE7D00883180 /* NSArray+HYBUnicodeReadable.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A97C10822CEFE7D00883180 /* NSArray+HYBUnicodeReadable.m */; };
 		7A97C10F22CEFE7D00883180 /* NSDictionary+HYBUnicodeReadable.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A97C10922CEFE7D00883180 /* NSDictionary+HYBUnicodeReadable.m */; };
 		7A97C11022CEFE7D00883180 /* NSSet+HYBUnicodeReadable.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A97C10A22CEFE7D00883180 /* NSSet+HYBUnicodeReadable.m */; };
@@ -21,6 +23,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7A701EAD22D87B5F00E4EEC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A701EA622D87B5F00E4EEC1 /* ZJPlayerSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7A72139B223B491800B7C02E;
+			remoteInfo = ZJPlayerSDK;
+		};
+		7A701EB022D87B8800E4EEC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A701EA622D87B5F00E4EEC1 /* ZJPlayerSDK.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A72139A223B491800B7C02E;
+			remoteInfo = ZJPlayerSDK;
+		};
 		7AA4BA9722C5FDB40042477D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7AA4BA9322C5FDB40042477D /* LEDLNASDK.xcodeproj */;
@@ -38,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7A701EA622D87B5F00E4EEC1 /* ZJPlayerSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZJPlayerSDK.xcodeproj; path = libs/ZJPlayerSDK/ZJPlayerSDK.xcodeproj; sourceTree = SOURCE_ROOT; };
+		7A701EF222D890AD00E4EEC1 /* ZJPlayerSource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ZJPlayerSource.bundle; path = AirPlayKit/THREE/ZJPlayerSource.bundle; sourceTree = SOURCE_ROOT; };
 		7A97C10822CEFE7D00883180 /* NSArray+HYBUnicodeReadable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HYBUnicodeReadable.m"; sourceTree = "<group>"; };
 		7A97C10922CEFE7D00883180 /* NSDictionary+HYBUnicodeReadable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+HYBUnicodeReadable.m"; sourceTree = "<group>"; };
 		7A97C10A22CEFE7D00883180 /* NSSet+HYBUnicodeReadable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+HYBUnicodeReadable.m"; sourceTree = "<group>"; };
@@ -64,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A701EAF22D87B8100E4EEC1 /* libZJPlayerSDK.a in Frameworks */,
 				7AA4BADA22C602FF0042477D /* libxml2.tbd in Frameworks */,
 				7AA4BA9C22C5FDE50042477D /* libLEDLNASDK.a in Frameworks */,
 			);
@@ -72,9 +91,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A701EA722D87B5F00E4EEC1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7A701EAE22D87B5F00E4EEC1 /* libZJPlayerSDK.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		7A97C10622CEFE6400883180 /* THREE */ = {
 			isa = PBXGroup;
 			children = (
+				7A701EF222D890AD00E4EEC1 /* ZJPlayerSource.bundle */,
 				7A97C10722CEFE7D00883180 /* HYBUnicodeReadable */,
 			);
 			path = THREE;
@@ -131,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				7A97C10622CEFE6400883180 /* THREE */,
+				7A701EA622D87B5F00E4EEC1 /* ZJPlayerSDK.xcodeproj */,
 				7AA4BA9322C5FDB40042477D /* LEDLNASDK.xcodeproj */,
 				7AE0AE1322C49B3B00A7A0C2 /* AppDelegate.h */,
 				7AE0AE1422C49B3B00A7A0C2 /* AppDelegate.m */,
@@ -159,6 +188,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7A701EB122D87B8800E4EEC1 /* PBXTargetDependency */,
 				7AA4BA9A22C5FDE10042477D /* PBXTargetDependency */,
 			);
 			name = AirPlayKit;
@@ -201,6 +231,10 @@
 					ProductGroup = 7AA4BA9422C5FDB40042477D /* Products */;
 					ProjectRef = 7AA4BA9322C5FDB40042477D /* LEDLNASDK.xcodeproj */;
 				},
+				{
+					ProductGroup = 7A701EA722D87B5F00E4EEC1 /* Products */;
+					ProjectRef = 7A701EA622D87B5F00E4EEC1 /* ZJPlayerSDK.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -210,6 +244,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		7A701EAE22D87B5F00E4EEC1 /* libZJPlayerSDK.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libZJPlayerSDK.a;
+			remoteRef = 7A701EAD22D87B5F00E4EEC1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		7AA4BA9822C5FDB40042477D /* libLEDLNASDK.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -227,6 +268,7 @@
 				7AE0AE2022C49B3C00A7A0C2 /* LaunchScreen.storyboard in Resources */,
 				7AE0AE1D22C49B3C00A7A0C2 /* Assets.xcassets in Resources */,
 				7AE0AE1B22C49B3B00A7A0C2 /* Main.storyboard in Resources */,
+				7A701EF322D890AD00E4EEC1 /* ZJPlayerSource.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +291,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7A701EB122D87B8800E4EEC1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ZJPlayerSDK;
+			targetProxy = 7A701EB022D87B8800E4EEC1 /* PBXContainerItemProxy */;
+		};
 		7AA4BA9A22C5FDE10042477D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = LEDLNASDK;
@@ -395,13 +442,18 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8PCJDBWX47;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libs/LEDLNASDK/LEDLNASDK\"/**";
+				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/libs/LEDLNASDK/LEDLNASDK\"/**",
+					"\"$(SRCROOT)/libs/ZJPlayerSDK/ZJPlayerSDK\"/**",
+				);
 				INFOPLIST_FILE = AirPlayKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.airplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = Dev_common_20190702;
@@ -416,13 +468,18 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8PCJDBWX47;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libs/LEDLNASDK/LEDLNASDK\"/**";
+				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/libs/LEDLNASDK/LEDLNASDK\"/**",
+					"\"$(SRCROOT)/libs/ZJPlayerSDK/ZJPlayerSDK\"/**",
+				);
 				INFOPLIST_FILE = AirPlayKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.airplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = House_common_20190702;
