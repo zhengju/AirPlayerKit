@@ -34,57 +34,57 @@
 
 @protocol ZJPlayerDelegate <NSObject>
 
-- (void)playFinishedPlayer:(ZJVideoPlayerView *)player;
+- (void)playFinishedPlayer:(ZJVideoPlayerView *_Nullable)player;
 
 
 @end
 
-extern NSString *const ZJViewControllerWillAppear;// 一个控制器即将出现
-extern NSString *const ZJViewControllerWillDisappear; // 一个控制器即将消失
-extern NSString *const ZJContinuousVideoPlayback; // 连续播放视频通知
-extern NSString *const ZJEventSubtypeRemoteControlTogglePlayPause; // 暂停键
+extern NSString * _Nullable const ZJViewControllerWillAppear;// 一个控制器即将出现
+extern NSString * _Nonnull const ZJViewControllerWillDisappear; // 一个控制器即将消失
+extern NSString * _Nonnull const ZJContinuousVideoPlayback; // 连续播放视频通知
+extern NSString * _Nonnull const ZJEventSubtypeRemoteControlTogglePlayPause; // 暂停键
 
 @interface ZJVideoPlayerView : UIView <UIApplicationDelegate>
 
-@property(weak,nonatomic) id<ZJPlayerDelegate> delegate;
+@property(weak,nonatomic) id<ZJPlayerDelegate>  delegate;
 
-@property(strong,nonatomic) AVPlayer * player;
+@property(strong,nonatomic) AVPlayer * _Nonnull player;
 
-@property(strong,nonatomic) AVPlayerLayer * playerLayer;
+@property(strong,nonatomic) AVPlayerLayer * _Nonnull playerLayer;
 
-@property(strong,nonatomic) AVPlayerItem * playerItem;
+@property(strong,nonatomic) AVPlayerItem * _Nonnull playerItem;
 
-@property(strong,nonatomic) ZJTopView * topView;
+@property(strong,nonatomic) ZJTopView * _Nonnull topView;
 
-@property(strong,nonatomic) ZJControlView * bottomView;
+@property(strong,nonatomic) ZJControlView * _Nonnull bottomView;
 
-@property(nonatomic, strong) UIView<ZJPlayerProtocolDelegate> * interceptView;
+@property(nonatomic, strong) UIView<ZJPlayerProtocolDelegate> * _Nonnull interceptView;
 
 /**
  默认背景图片
  */
-@property(nonatomic, strong) UIImage * placeholderImage;
+@property(nonatomic, strong) UIImage * _Nonnull placeholderImage;
 
 @property(assign,nonatomic) BOOL  isDragSlider;
 /**
  tableView中player显示的位置
  */
-@property(strong,nonatomic) NSIndexPath *indexPath;
+@property(strong,nonatomic) NSIndexPath * _Nonnull indexPath;
 /**
  当前播放视频的标题
  */
-@property(copy,nonatomic) NSString * title;
+@property(copy,nonatomic) NSString * _Nonnull title;
 /**
  当前播放url
  */
-@property (nonatomic,strong) NSURL *url;
+@property (nonatomic,strong) NSURL * _Nonnull url;
 
-@property (nonatomic,strong) AVURLAsset *asset;
+@property (nonatomic,strong) AVURLAsset * _Nonnull asset;
 
 /**
  定时器 自动消失View
  */
-@property(strong,nonatomic) NSTimer * autoDismissTimer;
+@property(strong,nonatomic) NSTimer * _Nonnull autoDismissTimer;
 /**
  是否自动播放,默认是NO
  */
@@ -116,14 +116,14 @@ extern NSString *const ZJEventSubtypeRemoteControlTogglePlayPause; // 暂停键
 /**
  父视图
  */
-@property(strong,nonatomic) UIView * fatherView;
+@property(strong,nonatomic) UIView * _Nullable fatherView;
 
 /**
  全屏时的父视图
  */
-@property (nonatomic, strong) UIView *fullScreenContainerView;
+@property (nonatomic, strong) UIView * _Nonnull fullScreenContainerView;
 
-@property (nonatomic, copy, nullable) void(^orientationWillChange)(ZJVideoPlayerView *player, BOOL isFullScreen);
+@property (nonatomic, copy, nullable) void(^orientationWillChange)(ZJVideoPlayerView * _Nonnull player, BOOL isFullScreen);
 
 /**
  单例生成player

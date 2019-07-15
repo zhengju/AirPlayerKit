@@ -12,7 +12,6 @@
 		7A97C10E22CEFE7D00883180 /* NSArray+HYBUnicodeReadable.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A97C10822CEFE7D00883180 /* NSArray+HYBUnicodeReadable.m */; };
 		7A97C10F22CEFE7D00883180 /* NSDictionary+HYBUnicodeReadable.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A97C10922CEFE7D00883180 /* NSDictionary+HYBUnicodeReadable.m */; };
 		7A97C11022CEFE7D00883180 /* NSSet+HYBUnicodeReadable.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A97C10A22CEFE7D00883180 /* NSSet+HYBUnicodeReadable.m */; };
-		7AA4BA9C22C5FDE50042477D /* libLEDLNASDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA4BA9822C5FDB40042477D /* libLEDLNASDK.a */; };
 		7AA4BADA22C602FF0042477D /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA4BACA22C5FF170042477D /* libxml2.tbd */; };
 		7AE0AE1522C49B3B00A7A0C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE0AE1422C49B3B00A7A0C2 /* AppDelegate.m */; };
 		7AE0AE1822C49B3B00A7A0C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE0AE1722C49B3B00A7A0C2 /* ViewController.m */; };
@@ -84,7 +83,6 @@
 			files = (
 				7A701EAF22D87B8100E4EEC1 /* libZJPlayerSDK.a in Frameworks */,
 				7AA4BADA22C602FF0042477D /* libxml2.tbd in Frameworks */,
-				7AA4BA9C22C5FDE50042477D /* libLEDLNASDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,7 +19,9 @@
 #import <MediaPlayer/MPVolumeView.h>
 #import "UIView+Player.h"
 #import "ZJDownloadManager.h"
-
+#import <LEDLNASDK/MRDLNA.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import "AirPlayBgControlView.h"
 static const CGFloat kVideoControlAnimationTimeInterval = 0.3;
 
 
@@ -48,8 +50,10 @@ typedef NS_ENUM(NSInteger, ZJPlayerSliding) {
     slidingProgress//进度滑动
 };
 
-@interface ZJVideoPlayerView()<ZJControlViewDelegate,ZJTopViewDelegate>//,InterceptViewDelegate>
-
+@interface ZJVideoPlayerView()<ZJControlViewDelegate,ZJTopViewDelegate,DLNADelegate,AirPlayBgControlViewDelegate>//,InterceptViewDelegate>
+{
+     BOOL _airPlay;//是否是airplay
+}
 @property (nonatomic, strong) id timeObserver;
 
 /**
@@ -125,6 +129,13 @@ typedef NS_ENUM(NSInteger, ZJPlayerSliding) {
 @property(strong,nonatomic) ZJResourceLoaderManager *  resourceManager;
 @property(assign,nonatomic) ZJPlayerSliding  slidingStyle;
 
+@property(nonatomic,strong) MRDLNA *dlnaManager;
+@property(nonatomic, strong) CLUPnPDevice * currentDevice;
+@property(nonatomic, strong) NSArray * devices;
+/** 音量View*/
+@property(nonatomic,strong) MPVolumeView     * volumeView;
+@property(nonatomic,strong) UIButton     * mpButton;
+@property(nonatomic, strong) AirPlayBgControlView * airPlayControlView;
 @end
 
 @implementation ZJVideoPlayerView
@@ -259,6 +270,44 @@ typedef NS_ENUM(NSInteger, ZJPlayerSliding) {
     }
     
     [self addObserverToPlayerItem:self.playerItem];
+    
+    
+    self.dlnaManager = [MRDLNA sharedMRDLNAManager];
+    
+    self.dlnaManager.delegate = self;
+    
+    [self.dlnaManager startDLNA];
+    
+    [self.dlnaManager startSearch];
+    
+    //隐藏自带的按钮
+    self.volumeView = [[MPVolumeView alloc]init];
+    [self.volumeView setShowsVolumeSlider:NO];
+    [self.volumeView sizeToFit];
+    self.volumeView.center = CGPointMake(-1000, -1000);
+    [self addSubview:_volumeView];
+    
+    
+    self.airPlayControlView = [[AirPlayBgControlView alloc]initWithFrame:self.bounds];
+    self.airPlayControlView.delegate = self;
+    [self insertSubview:self.airPlayControlView atIndex:0];
+    self.airPlayControlView.hidden = YES;
+
+    
+    for (UIView *view in [self.volumeView subviews]){
+        if ([view.class.description isEqualToString:@"MPVolumeSlider"]){
+            self.volumeViewSlider = (UISlider*)view;
+            break;
+        }
+    }
+    
+    for (UIButton *button in self.volumeView.subviews) {
+        if ([button isKindOfClass:[UIButton class]]) {
+            self.mpButton = button;
+            NSLog(@"%@",button);
+        }
+    }
+    
 }
 #pragma  当前播放视频的标题
 - (void)setTitle:(NSString *)title{
@@ -482,6 +531,8 @@ typedef NS_ENUM(NSInteger, ZJPlayerSliding) {
     [self.bottomView resetFrame];
     self.topView.frame = CGRectMake(0, 0, self.frameOnFatherView.size.width, 50);
     [self.topView resetFrame:NO];
+    [self.airPlayControlView resetFrame:NO superViewFrame:self.frameOnFatherView];
+    
 }
 
 
@@ -843,6 +894,19 @@ typedef NS_ENUM(NSInteger, ZJPlayerSliding) {
 
      [[AVAudioSession sharedInstance] setActive:YES error:nil];//创建单例对象并且使其设置为活跃状态.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(routeChange:) name:AVAudioSessionRouteChangeNotification object:nil];
+    //about airplay
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    //检测当前是否正在投影
+    [center addObserver:self selector:@selector(wirelessRouteActiveNotification:)
+                   name:MPVolumeViewWirelessRouteActiveDidChangeNotification object:nil];
+    //检测当前是否 有支持airPlayer的无线设备
+    [center addObserver:self selector:@selector(wirelessAvailableNotification:)
+                   name:MPVolumeViewWirelessRoutesAvailableDidChangeNotification object:nil];
+    NSError *error;
+    [[AVAudioSession sharedInstance] setActive:YES error:&error];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(volumeChanged:) name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
+    
+    
 }
 
 #pragma mark -- 音频输出改变触发事件OK
@@ -1008,6 +1072,85 @@ typedef NS_ENUM(NSInteger, ZJPlayerSliding) {
     }
 }
 
+-(void)wirelessRouteActiveNotification:(NSNotification*) notification
+{
+    MPVolumeView* volumeView = (MPVolumeView*)notification.object;
+    
+    NSLog(@"-------wirelessRouteActiveNotification--------");
+    
+    
+    //    [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = @{MPNowPlayingInfoPropertyPlaybackRate:@"3"};
+    //
+    //    NSLog(@"[MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo %@",[MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo);
+    
+    //当前投影的设备是否 可以 投影
+    if(volumeView.isWirelessRouteActive) {
+        //正在投影 获取到投影设备的名字
+        
+        NSString * airPlayerName = [self activeAirplayOutputRouteName];
+        NSLog(@"%@",airPlayerName);
+        if (airPlayerName) {
+            _airPlay = YES;
+            self.airPlayControlView.hidden = NO;
+//            self.currentrender.text = [NSString stringWithFormat:@"%@(AIRPLAY)",airPlayerName];
+        }
+        
+    } else {
+        //没有投影或者是 取消了投影
+//        self.currentrender.text = @"没有投影";
+        self.airPlayControlView.hidden = YES;
+    }
+    
+}
+
+-(void)wirelessAvailableNotification:(NSNotification*) notification
+{
+    MPVolumeView* volumeView = (MPVolumeView*)notification.object;
+    
+    if (volumeView.wirelessRoutesAvailable) {
+        
+        
+        NSLog(@"有DLNA投影设备");
+    }else{
+        
+        NSLog(@"没有DLNA投影设备");
+        
+    }
+}
+
+//获取设备名字
+- (NSString*)activeAirplayOutputRouteName
+{
+    AVAudioSession* audioSession = [AVAudioSession sharedInstance];
+    AVAudioSessionRouteDescription* currentRoute = audioSession.currentRoute;
+    for (AVAudioSessionPortDescription* outputPort in currentRoute.outputs){
+        if ([outputPort.portType isEqualToString:AVAudioSessionPortAirPlay])
+            return outputPort.portName;
+    }
+    
+    return nil;
+}
+/**
+ *  点击音量键出发事件
+ */
+- (void)volumeChanged:(NSNotification *)notification {
+    
+    //获取当前系统音量
+    NSDictionary *dic = [notification userInfo];
+    NSString * volume = [NSString stringWithFormat:@"%@",dic[@"AVSystemController_AudioVolumeNotificationParameter"]];
+    
+    
+    int vol = [volume floatValue]*16;
+    
+    NSLog(@"volume is %.d",vol);
+    
+    [self.dlnaManager volumeChanged:[NSString stringWithFormat:@"%d",vol*5]];
+    
+//    self.voiceLabel.text = [NSString stringWithFormat:@"%d",vol];
+    
+#warning iphone和tv声音的一个联动
+    
+}
 - (void)removeNotification{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -1365,7 +1508,7 @@ typedef NS_ENUM(NSInteger, ZJPlayerSliding) {
             [self.bottomView resetFrame];
             self.topView.frame = CGRectMake(0, 0, width, 70);
             [self.topView resetFrame:YES];
-
+            [self.airPlayControlView resetFrame:YES superViewFrame:self.superview.bounds];
             self.transform = [self getTransformRotationAngle:interfaceOrientation];
 
         } completion:^(BOOL finished) {
@@ -1443,12 +1586,11 @@ typedef NS_ENUM(NSInteger, ZJPlayerSliding) {
 #pragma mark -视频播放
 - (void)play{
     
-    self.bottomView.isPlay  = YES;
-    
-    [self.player play];
+    if (_airPlay) {
 
+    self.bottomView.isPlay  = YES;
+    [self.player play];
     ZJCacheTask * task =  [ZJCacheTask shareTask];
-    
     if (_url) {
         NSTimeInterval time = [task queryToFileUrl:_url.absoluteString];
         //判断是开始播放，还是暂停之后的播放
@@ -1456,7 +1598,6 @@ typedef NS_ENUM(NSInteger, ZJPlayerSliding) {
             [self.player seekToTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
         }
     }
-    
     if (self.isPlayAfterPause == NO) {
         [self.topView resetRate];
     }else{//暂停播放，倍速还原为之前的
@@ -1477,6 +1618,10 @@ typedef NS_ENUM(NSInteger, ZJPlayerSliding) {
             [self toFullScreenWithInterfaceOrientation:UIInterfaceOrientationLandscapeRight];
         }
     }
+        
+    }else{
+        [self.dlnaManager dlnaPlay];
+    }
 }
 - (void)saveImageToPhotos:(UIImage *)image {
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:),nil);
@@ -1494,9 +1639,15 @@ typedef NS_ENUM(NSInteger, ZJPlayerSliding) {
 #pragma mark -- 视频暂停
 - (void)pause{
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.bottomView.isPlay  = NO;
-        self.isPlayAfterPause = YES;
-        [self.player pause];
+        
+        if (_airPlay) {
+            self.bottomView.isPlay  = NO;
+            self.isPlayAfterPause = YES;
+            [self.player pause];
+        }else{
+            [self.dlnaManager dlnaPause];
+        }
+
     });
 }
 - (void)sliderDragValueChange:(UISlider *)slider
@@ -1568,10 +1719,127 @@ typedef NS_ENUM(NSInteger, ZJPlayerSliding) {
     [[ZJDownloadManager sharedInstance]downloadWithItem:item];
     
 }
-//#pragma mark -InterceptViewDelegate
-//-(void)interceptViewToback{
-//    [self play];
-//}
+- (void)airPlayVideo{
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"渲染器"
+                                                                              message:@"请选择渲染器"
+                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction * cancelAction =[UIAlertAction actionWithTitle:@"取消"
+                                                           style:(UIAlertActionStyleCancel)
+                                                         handler:NULL];
+    [alertController addAction:cancelAction];
+    
+    for (int i = 0;  i < self.devices.count; i ++) {
+        __weak typeof(self) wSelf = self;
+        
+        CLUPnPDevice * renderDevice = self.devices[i];
+        
+        UIAlertAction * action = [UIAlertAction actionWithTitle:renderDevice.friendlyName style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            wSelf.currentDevice = renderDevice;
+            
+            NSString *testUrl = @"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4";
+            CLUPnPDevice * device = self.devices[i];
+            wSelf.dlnaManager.device = device;
+            wSelf.dlnaManager.playUrl = testUrl;
+            [wSelf.dlnaManager startDLNA];
+            [wSelf.dlnaManager dlnaPlay];
+            [wSelf.dlnaManager seekChanged:CMTimeGetSeconds(self.player.currentItem.currentTime)];
+            
+            [wSelf.dlnaManager startWebServer];
+            
+//            self.currentrender.text = [NSString stringWithFormat:@"%@(DLNA)",device.friendlyName];
+            
+        }];
+        [alertController addAction:action];
+    }
+    
+    UIAlertAction * action = [UIAlertAction actionWithTitle:@"AirPlay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        self->_airPlay = YES;
+        [self.mpButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+        
+    }];
+    [alertController addAction:action];
+    
+    UIViewController * currentController = [self getCurrentViewController];
+    
+    [currentController presentViewController:alertController animated:YES completion:NULL];
+    
+}
+#pragma mark - DLNADelegate
+- (void)searchDLNAResult:(NSArray *)devicesArray{
+    self.devices = devicesArray;
 
+}
 
+- (void)dlnaStartPlay{
+    _airPlay = NO;
+    [self.player pause];
+    [self.dlnaManager getVolume];//获取音量
+    
+    //投屏成功后
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.airPlayControlView.hidden = NO;
+        
+    });
+    
+}
+
+- (void)dlnaGetVolumeResponse:(NSString *)volume{
+    NSLog(@"volum:%@",volume);
+    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        self.voiceLabel.text =  [NSString stringWithFormat:@"%ld",[volume integerValue]/5];
+//
+//    });
+    
+}
+- (void)dlnaGetPositionInfoResponse:(CLUPnPAVPositionInfo *)info{
+    
+//    self.totalTime = info.trackDuration;
+//
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        self.playSlider.value = info.relTime/info.trackDuration;
+//        self.currentTime = info.relTime;
+//        self.timeInfoLabel.text = [NSString stringWithFormat:@"%@/%@",[self.dlnaManager timeFormatted:info.relTime],[self.dlnaManager timeFormatted:info.trackDuration]];
+//    });
+    // NSLog(@"upnpGetPositionInfoResponse %f %f %f",info.trackDuration,info.absTime,info.relTime);
+    
+    
+    
+    
+    
+}
+- (void)dlnaStop{
+    [self.dlnaManager endDLNA];
+    [self.dlnaManager close];
+    _airPlay = YES;
+//    [self.player seekToTime:CMTimeMake(self.currentTime, 1) completionHandler:^(BOOL finished) {
+//        [self.player play];
+//    }];
+    
+//
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        self.currentrender.text = @"乐播投屏(无)";
+//    });
+}
+#pragma mark - AirPlayBgControlViewDelegate
+- (void)backOut{
+    if (_airPlay) {
+        
+        [self.mpButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+    }else{//dlna
+        [self.dlnaManager endDLNA];
+        [self.dlnaManager close];
+        self.airPlayControlView.hidden = YES;
+        _airPlay = YES;
+//        [self.player.player seekToTime:CMTimeMake(self.currentTime, 1) completionHandler:^(BOOL finished) {
+//            [self.player.player play];
+//        }];
+//        self.currentrender.text = @"乐播投屏(无)";
+    }
+}
+- (void)changeDevice{
+    [self airPlayVideo];
+}
 @end

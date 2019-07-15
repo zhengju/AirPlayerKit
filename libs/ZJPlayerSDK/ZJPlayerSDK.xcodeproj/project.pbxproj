@@ -27,6 +27,8 @@
 		7A7213DF223B598800B7C02E /* ZJLoadingIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7213DE223B598800B7C02E /* ZJLoadingIndicator.m */; };
 		7A7213E2223B5A2200B7C02E /* ZJResourceLoaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7213E1223B5A2200B7C02E /* ZJResourceLoaderManager.m */; };
 		7A7213E8223B725F00B7C02E /* UIView+Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7213E7223B725F00B7C02E /* UIView+Player.m */; };
+		7AAEE9AB22DC60F10098DEDD /* libLEDLNASDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAEE9AA22DC60F10098DEDD /* libLEDLNASDK.a */; };
+		7AAEE9B022DC659F0098DEDD /* AirPlayBgControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAEE9AF22DC659F0098DEDD /* AirPlayBgControlView.m */; };
 		7ACF4CF4224A12C0001B0EB4 /* ZJJPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF4CF3224A12C0001B0EB4 /* ZJJPlayer.m */; };
 		7AED2A0C225D84780032C675 /* VIResourceLoadingRequestWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AED29FF225D84770032C675 /* VIResourceLoadingRequestWorker.m */; };
 		7AED2A0D225D84780032C675 /* VIMediaDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AED2A03225D84770032C675 /* VIMediaDownloader.m */; };
@@ -105,6 +107,9 @@
 		7A7213E1223B5A2200B7C02E /* ZJResourceLoaderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZJResourceLoaderManager.m; path = ZJPlayerSDK/Player/ResourceLoader/ZJResourceLoaderManager.m; sourceTree = SOURCE_ROOT; };
 		7A7213E6223B725E00B7C02E /* UIView+Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Player.h"; path = "ZJPlayerSDK/UIView+Player.h"; sourceTree = SOURCE_ROOT; };
 		7A7213E7223B725F00B7C02E /* UIView+Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Player.m"; path = "ZJPlayerSDK/UIView+Player.m"; sourceTree = SOURCE_ROOT; };
+		7AAEE9AA22DC60F10098DEDD /* libLEDLNASDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libLEDLNASDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AAEE9AE22DC659F0098DEDD /* AirPlayBgControlView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AirPlayBgControlView.h; sourceTree = "<group>"; };
+		7AAEE9AF22DC659F0098DEDD /* AirPlayBgControlView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AirPlayBgControlView.m; sourceTree = "<group>"; };
 		7ACF4CF2224A12C0001B0EB4 /* ZJJPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJJPlayer.h; sourceTree = "<group>"; };
 		7ACF4CF3224A12C0001B0EB4 /* ZJJPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJJPlayer.m; sourceTree = "<group>"; };
 		7AED29FF225D84770032C675 /* VIResourceLoadingRequestWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIResourceLoadingRequestWorker.m; sourceTree = "<group>"; };
@@ -138,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AAEE9AB22DC60F10098DEDD /* libLEDLNASDK.a in Frameworks */,
 				7A701ED522D87FF700E4EEC1 /* libZJToolsSDK.a in Frameworks */,
 				7A701EC722D87D5C00E4EEC1 /* libZJHttpDownload.a in Frameworks */,
 			);
@@ -225,6 +231,8 @@
 				7A7213BD223B498C00B7C02E /* ZJProgress.m */,
 				7A7213C5223B498C00B7C02E /* ZJTopView.h */,
 				7A7213BE223B498C00B7C02E /* ZJTopView.m */,
+				7AAEE9AE22DC659F0098DEDD /* AirPlayBgControlView.h */,
+				7AAEE9AF22DC659F0098DEDD /* AirPlayBgControlView.m */,
 				7A7213C4223B498C00B7C02E /* ZJControlView.h */,
 				7A7213BF223B498C00B7C02E /* ZJControlView.m */,
 				7A7213BB223B498C00B7C02E /* ZJBrightness.h */,
@@ -261,6 +269,7 @@
 		7AEF926C2249C55400D32B19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7AAEE9AA22DC60F10098DEDD /* libLEDLNASDK.a */,
 				7A701EC622D87D5C00E4EEC1 /* libZJHttpDownload.a */,
 				7AEF926D2249C55400D32B19 /* libZJToolsSDK.a */,
 			);
@@ -366,6 +375,7 @@
 				7AED2A22225D84B10032C675 /* VICacheConfiguration.m in Sources */,
 				7A7213CC223B498C00B7C02E /* ZJPlayerController.m in Sources */,
 				7AED2A0F225D84780032C675 /* VIResourceLoaderManager.m in Sources */,
+				7AAEE9B022DC659F0098DEDD /* AirPlayBgControlView.m in Sources */,
 				188D657D2258AEE000935141 /* ZJPlayerControl.m in Sources */,
 				7A7213C9223B498C00B7C02E /* ZJTopView.m in Sources */,
 				7AED2A20225D84B10032C675 /* VICacheManager.m in Sources */,
@@ -507,6 +517,7 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../ZJToolsSDK/ZJToolsSDK\"/**",
 					"\"$(SRCROOT)/../ZJHttpDownload/ZJHttpDownload\"/**",
+					"\"$(SRCROOT)/../LEDLNASDK/LEDLNASDK\"/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = (
@@ -527,6 +538,7 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../ZJToolsSDK/ZJToolsSDK\"/**",
 					"\"$(SRCROOT)/../ZJHttpDownload/ZJHttpDownload\"/**",
+					"\"$(SRCROOT)/../LEDLNASDK/LEDLNASDK\"/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = (

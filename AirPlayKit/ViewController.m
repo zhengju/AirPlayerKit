@@ -333,12 +333,7 @@
     [self.player.player addObserver:self forKeyPath:@"airPlayVideoActive" options:NSKeyValueObservingOptionNew |NSKeyValueObservingOptionOld context:nil];//监控投屏状态
     self.player.player.usesExternalPlaybackWhileExternalScreenIsActive = YES;//指示当外部屏幕模式处于活动状态时，播放机是否应自动切换到外部播放模式
 
-//    self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:_avPlayer];
-//    self.playerLayer.frame = self.playerView.bounds;
-//    self.playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
-//    self.playerLayer.backgroundColor = [UIColor blackColor].CGColor;
-//    [self.playerView.layer addSublayer:_playerLayer];
-//    [self.avPlayer play];
+
     _isPlaying = YES;
     _airPlay = YES;
     //隐藏自带的按钮

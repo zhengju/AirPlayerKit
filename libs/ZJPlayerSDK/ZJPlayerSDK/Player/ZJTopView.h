@@ -28,6 +28,10 @@
  下载视频
  */
 - (void)downloadVideo;
+/**
+ airPlay
+ */
+- (void)airPlayVideo;
 @end
 @interface ZJTopView : UIView
 @property(weak,nonatomic) id<ZJTopViewDelegate> delegate;

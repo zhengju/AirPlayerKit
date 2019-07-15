@@ -40,6 +40,10 @@
  */
 @property(strong,nonatomic) UIButton * downloadBtn;
 
+/**
+ AirPlay按钮
+ */
+@property(nonatomic, strong) UIButton * airPlayBtn;
 @property(strong,nonatomic) NSArray * rates;
 @end
 
@@ -93,18 +97,18 @@
             
             // 0 1 2 3 4
             
-            if (_rateIndex == self.rates.count ) {
-                _rateIndex = 0;
+            if (self->_rateIndex == self.rates.count ) {
+                self->_rateIndex = 0;
             }
             
-            NSString * rateStr = selfWeak.rates[_rateIndex];
+            NSString * rateStr = selfWeak.rates[self->_rateIndex];
             
             
             [selfWeak.delegate setRate:rateStr.floatValue];
             
-            [selfWeak.rateBtn setTitle:[NSString stringWithFormat:@"%@X",self.rates[_rateIndex]] forState:UIControlStateNormal];
+            [selfWeak.rateBtn setTitle:[NSString stringWithFormat:@"%@X",self.rates[self->_rateIndex]] forState:UIControlStateNormal];
             
-            NSLog(@"%@",[NSString stringWithFormat:@"%@X",selfWeak.rates[_rateIndex]]);
+            NSLog(@"%@",[NSString stringWithFormat:@"%@X",selfWeak.rates[self->_rateIndex]]);
             
             
             
@@ -137,37 +141,36 @@
     self.gifScreenshotBtn = [[UIButton alloc]init];
     self.gifScreenshotBtn.showsTouchWhenHighlighted = YES;
     [self.gifScreenshotBtn setImage:[UIImage imageNamed:@"GIF"] forState:UIControlStateNormal];
-    
     [self.gifScreenshotBtn bk_addEventHandler:^(id sender) {
-        
         if ([self.delegate respondsToSelector:@selector(gifScreenshot)]) {
             [self.delegate gifScreenshot];
-            
         }
-        
     } forControlEvents:UIControlEventTouchUpInside];
-    
     [self addSubview:self.gifScreenshotBtn];
-    
     self.gifScreenshotBtn.frame = CGRectMake(CGRectGetMinX(self.captureBtn.frame)-5-35, (self.frameH-25)/2.0, 35, 35);
 //下载
     self.downloadBtn = [[UIButton alloc]init];
     self.downloadBtn.showsTouchWhenHighlighted = YES;
     [self.downloadBtn setImage:[UIImage imageNamed:@"下载"] forState:UIControlStateNormal];
-    
     [self.downloadBtn bk_addEventHandler:^(id sender) {
-        
         if ([self.delegate respondsToSelector:@selector(downloadVideo)]) {
             [self.delegate downloadVideo];
-            
         }
-        
     } forControlEvents:UIControlEventTouchUpInside];
-    
     [self addSubview:self.downloadBtn];
-    
     self.downloadBtn.frame = CGRectMake(CGRectGetMinX(self.gifScreenshotBtn.frame)-5-35, (self.frameH-25)/2.0, 35, 35);
     
+    //AirPlay
+    self.airPlayBtn = [[UIButton alloc]init];
+    self.airPlayBtn.showsTouchWhenHighlighted = YES;
+    [self.airPlayBtn setImage:[UIImage imageNamed:@"airplay"] forState:UIControlStateNormal];
+    [self.airPlayBtn bk_addEventHandler:^(id sender) {
+        if ([self.delegate respondsToSelector:@selector(airPlayVideo)]) {
+            [self.delegate airPlayVideo];
+        }
+    } forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:self.airPlayBtn];
+    self.airPlayBtn.frame = CGRectMake(CGRectGetMinX(self.downloadBtn.frame)-5-35, (self.frameH-25)/2.0, 35, 35);
     
     self.titleLabel = [[UILabel alloc]init];
     self.titleLabel.textColor = [UIColor whiteColor];
